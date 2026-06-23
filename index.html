@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QA For Job — Real Senior QA Prep</title>
+<style>
+:root {
+  --bg: #0f1419; --bg-card: #1a2030; --bg-code: #242e40;
+  --accent: #4a9eff; --text: #e0e6ed; --text-muted: #8b95a7;
+  --border: #2a3545; --green: #4ade80; --orange: #fb923c;
+  --purple: #a78bfa; --red: #f87171; --yellow: #fbbf24;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 16px; }
+header { background: linear-gradient(135deg, #1a2030 0%, #0f1419 100%); border-bottom: 1px solid var(--border); padding: 60px 20px 40px; text-align: center; }
+header h1 { font-size: 2.6rem; margin-bottom: 10px; background: linear-gradient(135deg, #4a9eff 0%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+header p { color: var(--text-muted); font-size: 1.1rem; max-width: 620px; margin: 0 auto; }
+nav { background: var(--bg-card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0; }
+nav .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; padding: 8px 12px; }
+nav a { color: var(--text-muted); text-decoration: none; padding: 6px 11px; border-radius: 6px; font-size: 0.82rem; transition: all 0.2s; white-space: nowrap; display: inline-block; }
+nav a:hover { background: var(--bg-code); color: var(--text); }
+nav a.active { background: var(--accent); color: white; }
+main { max-width: 920px; margin: 0 auto; padding: 40px 20px; }
+section { background: var(--bg-card); border-radius: 12px; padding: 32px; margin-bottom: 30px; border: 1px solid var(--border); }
+section h2 { font-size: 1.75rem; margin-bottom: 20px; color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+section h3 { font-size: 1.25rem; margin: 28px 0 12px; color: var(--green); }
+section h4 { font-size: 1.05rem; margin: 20px 0 8px; color: var(--orange); }
+section h5 { font-size: 0.95rem; margin: 16px 0 6px; color: var(--yellow); }
+p { margin-bottom: 12px; }
+ul, ol { margin: 10px 0 16px 24px; }
+li { margin-bottom: 5px; }
+code { background: var(--bg-code); color: #7dd3fc; padding: 2px 6px; border-radius: 4px; font-family: "SF Mono", Monaco, Consolas, monospace; font-size: 0.88em; }
+pre { background: var(--bg-code); border: 1px solid var(--border); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 14px 0; -webkit-overflow-scrolling: touch; }
+pre code { background: none; color: var(--text); padding: 0; font-size: 0.84rem; line-height: 1.55; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+th, td { text-align: left; padding: 10px 14px; border: 1px solid var(--border); }
+th { background: var(--accent); color: white; font-weight: 600; }
+tr:nth-child(even) { background: var(--bg-code); }
+.callout { padding: 14px 18px; border-radius: 8px; margin: 16px 0; border-left: 4px solid; }
+.callout-info  { background: rgba(74,158,255,0.1); border-color: var(--accent); }
+.callout-warn  { background: rgba(251,146,60,0.1); border-color: var(--orange); }
+.callout-success { background: rgba(74,222,128,0.1); border-color: var(--green); }
+.callout-tip   { background: rgba(167,139,250,0.1); border-color: var(--purple); }
+.callout-warn::before    { content: "\26A0\FE0F  "; font-weight: bold; }
+.callout-info::before    { content: "\2139\FE0F  "; font-weight: bold; }
+.callout-success::before { content: "\2705  "; font-weight: bold; }
+.callout-tip::before     { content: "\1F4A1  "; font-weight: bold; }
+.hero-cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(170px,1fr)); gap: 14px; margin: 28px 0; }
+.hero-card { background: var(--bg-card); padding: 18px; border-radius: 10px; border: 1px solid var(--border); text-align: center; transition: transform 0.2s, border-color 0.2s; }
+.hero-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.hero-card .icon { font-size: 1.9rem; margin-bottom: 8px; }
+.hero-card h3 { font-size: 0.95rem; margin: 6px 0 4px; color: var(--text); }
+.hero-card p { font-size: 0.82rem; color: var(--text-muted); }
+.toc { background: var(--bg-code); padding: 14px 18px; border-radius: 8px; margin: 16px 0; }
+.toc h4 { color: var(--accent); margin-top: 0; }
+.toc ul { list-style: none; margin-left: 0; }
+.toc li { margin-bottom: 3px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; }
+.toc a:hover { color: var(--accent); }
+footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.88rem; border-top: 1px solid var(--border); }
+@media (max-width: 768px) {
+  header { padding: 40px 16px 28px; }
+  header h1 { font-size: 1.75rem; }
+  header p { font-size: 0.95rem; }
+  nav .nav-inner { gap: 3px; padding: 6px 8px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  nav .nav-inner::-webkit-scrollbar { display: none; }
+  nav a { font-size: 0.78rem; padding: 5px 9px; flex-shrink: 0; }
+  main { padding: 16px 10px; }
+  section { padding: 18px 14px; }
+  section h2 { font-size: 1.3rem; }
+  section h3 { font-size: 1.1rem; }
+  table { font-size: 0.76rem; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  th, td { padding: 6px 8px; min-width: 80px; }
+  pre { font-size: 0.78rem; }
+  .hero-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .hero-card { padding: 14px 10px; }
+  .hero-card .icon { font-size: 1.5rem; }
+  .hero-card h3 { font-size: 0.85rem; }
+  .hero-card p { font-size: 0.75rem; }
+  .search-bar input { font-size: 0.88rem; }
+}
+
+@media (max-width: 480px) {
+  header h1 { font-size: 1.5rem; }
+  .hero-cards { grid-template-columns: repeat(2, 1fr); }
+  section h2 { font-size: 1.2rem; }
+}
+
+/* Search */
+.search-wrapper { max-width: 920px; margin: 0 auto; padding: 0 20px 0; }
+.search-bar { display: flex; align-items: center; gap: 10px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; margin: 24px 0 0; transition: border-color 0.2s; }
+.search-bar:focus-within { border-color: var(--accent); }
+.search-bar input { flex: 1; background: none; border: none; outline: none; color: var(--text); font-size: 0.95rem; }
+.search-bar input::placeholder { color: var(--text-muted); }
+.search-bar .search-icon { color: var(--text-muted); font-size: 1rem; }
+.search-results { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+.search-hit { background: var(--bg-card); border: 1px solid var(--accent); border-radius: 10px; padding: 16px 20px; margin-bottom: 12px; cursor: pointer; transition: background 0.15s; }
+.search-hit:hover { background: var(--bg-code); }
+.search-hit .hit-section { font-size: 0.78rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.search-hit .hit-title { font-size: 1rem; color: var(--text); font-weight: 600; margin-bottom: 4px; }
+.search-hit .hit-snippet { font-size: 0.87rem; color: var(--text-muted); line-height: 1.5; }
+.search-hit mark { background: rgba(74,158,255,0.25); color: var(--accent); border-radius: 2px; padding: 0 2px; }
+.search-empty { text-align: center; color: var(--text-muted); padding: 30px; }
+.search-results-area { display: none; }
+.search-results-area.visible { display: block; }
+
+
+/* AI Chat Widget */
+.chat-bubble {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, #4a9eff, #a78bfa);
+  border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(74,158,255,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; transition: transform 0.2s, box-shadow 0.2s;
+}
+.chat-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(74,158,255,0.55); }
+.chat-bubble .chat-badge {
+  position: absolute; top: -4px; right: -4px;
+  background: #4ade80; color: #0f1419; font-size: 0.6rem;
+  font-weight: 700; padding: 2px 5px; border-radius: 8px;
+  letter-spacing: 0.02em;
+}
+.chat-panel {
+  position: fixed; bottom: 96px; right: 28px; z-index: 998;
+  width: 360px; max-height: 520px;
+  background: #1a2030; border: 1px solid #2a3545;
+  border-radius: 16px; display: flex; flex-direction: column;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  transform: scale(0.92) translateY(12px);
+  opacity: 0; pointer-events: none;
+  transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1);
+}
+.chat-panel.open {
+  transform: scale(1) translateY(0);
+  opacity: 1; pointer-events: all;
+}
+.chat-header {
+  padding: 14px 18px; border-bottom: 1px solid #2a3545;
+  display: flex; align-items: center; gap: 10px;
+}
+.chat-header .chat-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: linear-gradient(135deg, #4a9eff, #a78bfa);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.chat-header .chat-info { flex: 1; }
+.chat-header .chat-info strong { display: block; font-size: 0.95rem; color: #e0e6ed; }
+.chat-header .chat-info span { font-size: 0.75rem; color: #4ade80; }
+.chat-header .chat-close {
+  background: none; border: none; color: #8b95a7;
+  cursor: pointer; font-size: 1.1rem; padding: 4px;
+  border-radius: 4px; transition: color 0.15s;
+}
+.chat-header .chat-close:hover { color: #e0e6ed; }
+.chat-messages {
+  flex: 1; overflow-y: auto; padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+  scrollbar-width: thin; scrollbar-color: #2a3545 transparent;
+}
+.chat-msg { display: flex; gap: 8px; align-items: flex-start; }
+.chat-msg.user { flex-direction: row-reverse; }
+.chat-msg .msg-avatar {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, #4a9eff, #a78bfa);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+}
+.chat-msg.user .msg-avatar { background: #2a3545; }
+.chat-msg .msg-bubble {
+  max-width: 78%; padding: 9px 13px; border-radius: 12px;
+  font-size: 0.875rem; line-height: 1.5; color: #e0e6ed;
+  background: #242e40;
+}
+.chat-msg.user .msg-bubble {
+  background: linear-gradient(135deg, #1e3a5f, #2a2050);
+  border: 1px solid #2a4070;
+}
+.chat-msg .msg-bubble.typing { color: #8b95a7; font-style: italic; }
+.chat-limit {
+  text-align: center; font-size: 0.78rem; color: #8b95a7;
+  padding: 4px 0 2px;
+}
+.chat-limit span { color: #4a9eff; }
+.chat-input-row {
+  padding: 12px 14px; border-top: 1px solid #2a3545;
+  display: flex; gap: 8px; align-items: flex-end;
+}
+.chat-input-row textarea {
+  flex: 1; background: #242e40; border: 1px solid #2a3545;
+  border-radius: 10px; color: #e0e6ed; font-size: 0.875rem;
+  padding: 9px 12px; resize: none; outline: none;
+  font-family: inherit; line-height: 1.4; max-height: 100px;
+  transition: border-color 0.2s;
+}
+.chat-input-row textarea:focus { border-color: #4a9eff; }
+.chat-input-row textarea::placeholder { color: #8b95a7; }
+.chat-send {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  background: linear-gradient(135deg, #4a9eff, #a78bfa);
+  border: none; cursor: pointer; color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; transition: opacity 0.2s;
+}
+.chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+.chat-exhausted {
+  text-align: center; padding: 12px 16px;
+  font-size: 0.82rem; color: #8b95a7;
+  border-top: 1px solid #2a3545;
+}
+.chat-exhausted a { color: #4a9eff; }
+@media (max-width: 420px) {
+  .chat-panel { width: calc(100vw - 20px); right: 10px; bottom: 76px; max-height: 70vh; }
+  .chat-bubble { bottom: 16px; right: 16px; width: 50px; height: 50px; font-size: 1.2rem; }
+}
+
+</style>
+</head>
+<body>
+<header>
+  <h1>QA For Job</h1>
+  <p>Real-world QA interview prep. Built by a Senior QA in active job search. Plain language, real examples, no fluff.</p>
+</header>
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="nav-link active">Home</a>
+    <a href="#manual" class="nav-link">Manual Testing</a>
+    <a href="#test-design" class="nav-link">Test Design</a>
+    <a href="#defects" class="nav-link">Defects</a>
+    <a href="#entry-exit" class="nav-link">Entry &amp; Exit</a>
+    <a href="#environments" class="nav-link">Environments</a>
+    <a href="#sql" class="nav-link">SQL</a>
+    <a href="#api" class="nav-link">API Testing</a>
+    <a href="#mobile" class="nav-link">Mobile</a>
+    <a href="#senior" class="nav-link">Senior Insights</a>
+    <a href="#interview" class="nav-link">Interview Prep</a>
+    <a href="#mistakes" class="nav-link">Mistakes</a>
+    <a href="#glossary" class="nav-link">Glossary</a>
+    <a href="#agile" class="nav-link">Agile &amp; Scrum</a>
+    <a href="#reporting" class="nav-link">Test Reporting</a>
+    <a href="#accessibility" class="nav-link">Accessibility</a>
+    <a href="#performance" class="nav-link">Performance</a>
+  </div>
+</nav>
+<main>
+
+<div class="search-wrapper">
+  <div class="search-bar">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" id="siteSearch" placeholder="Search topics, keywords, techniques..." autocomplete="off" />
+  </div>
+</div>
+<div class="search-results">
+  <div class="search-results-area" id="searchResultsArea"></div>
+</div>
+
+<!-- HOME -->
+<section id="home">
+<h2>Why this site exists</h2>
+<p>This is a free QA interview prep resource built by a Senior QA Engineer in active job search. While preparing for real interviews at real companies, it became clear there is no clean, modern, free resource that covers everything a Senior QA actually needs. So this was built instead.</p>
+<p>Everything here comes from real interview questions, real test tasks submitted, real feedback received. Plain language. No fluff. Written for QA engineers preparing for their next senior role.</p>
+<div class="hero-cards">
+  <div class="hero-card"><div class="icon">&#x1F4CB;</div><h3>Manual Testing</h3><p>Types, SDLC, STLC, releases</p></div>
+  <div class="hero-card"><div class="icon">&#x1F3AF;</div><h3>Test Design</h3><p>BVA, EP, decision tables, pairwise</p></div>
+  <div class="hero-card"><div class="icon">&#x1F41B;</div><h3>Defects</h3><p>Severity, priority, lifecycle</p></div>
+  <div class="hero-card"><div class="icon">&#x1F6A6;</div><h3>Entry &amp; Exit</h3><p>Criteria with real examples</p></div>
+  <div class="hero-card"><div class="icon">&#x1F5A5;&#xFE0F;</div><h3>Environments</h3><p>Test data, staging, production</p></div>
+  <div class="hero-card"><div class="icon">&#x1F5C4;&#xFE0F;</div><h3>SQL for QA</h3><p>Queries, JOINs, aggregates</p></div>
+  <div class="hero-card"><div class="icon">&#x1F50C;</div><h3>API Testing</h3><p>REST, Postman, Swagger, security</p></div>
+  <div class="hero-card"><div class="icon">&#x1F4F1;</div><h3>Mobile</h3><p>iOS, Android, SDK, network</p></div>
+  <div class="hero-card"><div class="icon">&#x1F4A1;</div><h3>Senior Insights</h3><p>Curveball questions and depth</p></div>
+  <div class="hero-card"><div class="icon">&#x1F3A4;</div><h3>Interview Prep</h3><p>Real answers, killer phrases</p></div>
+  <div class="hero-card"><div class="icon">&#x1F4C5;</div><h3>Agile &amp; Scrum</h3><p>Ceremonies, DoD, QA's role</p></div>
+  <div class="hero-card"><div class="icon">&#x1F4CA;</div><h3>Test Reporting</h3><p>Reports, metrics, stakeholders</p></div>
+  <div class="hero-card"><div class="icon">&#x267F;</div><h3>Accessibility</h3><p>WCAG, tools, keyboard, screen reader</p></div>
+  <div class="hero-card"><div class="icon">&#x26A1;</div><h3>Performance</h3><p>Load testing, SLAs, numbers, tools</p></div>
+</div>
+<div class="callout callout-tip"><strong>How to use this site:</strong> Read sections matching what you are being interviewed for. Practice SQL queries on paper. Memorize the bug report template. Don't try to absorb everything in one sitting.</div>
+</section>
+
+<!-- MANUAL TESTING -->
+<section id="manual">
+<h2>Manual Testing</h2>
+<div class="toc"><h4>Contents</h4><ul>
+<li>Types of testing</li>
+<li>Functional vs non-functional</li>
+<li>SDLC and STLC</li>
+<li>Test plan vs test strategy</li>
+<li>QA role in releases</li>
+<li>Rollback vs hotfix</li>
+<li>A/B, alpha, beta, UAT</li>
+<li>Performance testing types</li>
+<li>Shift-left testing</li>
+</ul></div>
+
+<h3>Types of Testing</h3>
+<h4>Functional Testing</h4>
+<p>Checks that software does what it should. Each feature works as requirements describe. Example: clicking "Buy" places the order correctly.</p>
+<h4>Non-Functional Testing</h4>
+<p>Checks HOW WELL the software works. Performance, security, usability, reliability. Example: the Buy button works, but does it respond under 1 second when 1000 users click simultaneously?</p>
+<h4>Manual vs Automated</h4>
+<p><strong>Manual:</strong> A human tests by clicking, typing, exploring. Best for new features, exploratory testing, usability, and complex business scenarios.</p>
+<p><strong>Automated:</strong> Scripts run tests automatically. Best for repetitive regression. Faster but cannot find UX issues or anything not scripted.</p>
+<h4>Regression Testing</h4>
+<p>Re-test existing features after changes to confirm nothing broke. Done after every build or release. Can be full or partial (impacted areas only).</p>
+<h4>Smoke Testing</h4>
+<p>Quick basic checks to confirm a build is stable enough for deeper testing. Like checking if a car starts before testing the brakes. Usually 30-60 minutes. If smoke fails, the build goes back to development.</p>
+<h4>Sanity Testing</h4>
+<p>Narrower than smoke. Quick check of a specific fix or small feature. Confirms the fix works without full regression.</p>
+<h4>Integration Testing</h4>
+<p>Tests that two or more parts of the system work together. Example: after sign-up, does the welcome email service receive the trigger?</p>
+<h4>End-to-End (E2E) Testing</h4>
+<p>Tests a complete user flow from start to finish across all systems. Example: open account, deposit, place trade, close trade, withdraw.</p>
+<h4>Exploratory Testing</h4>
+<p>Tester explores the app without a predefined script. Uses experience and intuition. Senior QAs find the most unexpected bugs this way. Not random — it is structured exploration using charters.</p>
+<h4>Black Box / White Box / Grey Box</h4>
+<p><strong>Black box:</strong> No access to internal code. Tests from the user's perspective.</p>
+<p><strong>White box:</strong> Uses internal code knowledge. Common in unit and integration testing.</p>
+<p><strong>Grey box:</strong> Mix of both. Senior QAs typically work in grey box mode.</p>
+<h4>UAT (User Acceptance Testing)</h4>
+<p>Testing done by business stakeholders (not QA) to confirm the product meets business requirements before go-live. QA supports by setting up environments and test data. UAT sign-off is usually a release gate.</p>
+
+<h3>Functional vs Non-Functional</h3>
+<table>
+<tr><th>Aspect</th><th>Functional</th><th>Non-Functional</th></tr>
+<tr><td>Focus</td><td>WHAT the system does</td><td>HOW WELL it does it</td></tr>
+<tr><td>Tests</td><td>Features, business rules</td><td>Performance, security, usability</td></tr>
+<tr><td>Examples</td><td>Login works, payment goes through</td><td>Login &lt;2s, payments are secure</td></tr>
+<tr><td>When</td><td>Throughout development</td><td>Often later, near release</td></tr>
+<tr><td>Tools</td><td>Manual + automation</td><td>JMeter, k6, security scanners</td></tr>
+</table>
+
+<h3>Performance and Load Testing Types</h3>
+<table>
+<tr><th>Type</th><th>What it does</th><th>Example</th></tr>
+<tr><td>Load testing</td><td>Expected traffic volume</td><td>1000 users at peak login</td></tr>
+<tr><td>Stress testing</td><td>Push beyond limits to find breaking point</td><td>Keep adding users until server fails</td></tr>
+<tr><td>Spike testing</td><td>Sudden huge increase in load</td><td>Flash sale: 10x users in 5 seconds</td></tr>
+<tr><td>Soak testing</td><td>Sustained load over long time</td><td>Normal traffic for 24 hours — find memory leaks</td></tr>
+<tr><td>Scalability testing</td><td>Can the system grow to handle more</td><td>Does adding servers improve throughput</td></tr>
+</table>
+
+<h3>SDLC and STLC</h3>
+<h4>SDLC</h4>
+<p>Full process: Requirements &#x2192; Design &#x2192; Development &#x2192; Testing &#x2192; Deployment &#x2192; Maintenance.</p>
+<h4>STLC (testing subset of SDLC)</h4>
+<table>
+<tr><th>Phase</th><th>What happens</th><th>QA deliverable</th></tr>
+<tr><td>Requirements Analysis</td><td>QA reviews specs, flags ambiguities</td><td>Requirements Traceability Matrix (RTM)</td></tr>
+<tr><td>Test Planning</td><td>Scope, resources, timeline, risk, tools</td><td>Test plan document</td></tr>
+<tr><td>Test Design</td><td>Write test cases and test data</td><td>Test cases, data sets</td></tr>
+<tr><td>Environment Setup</td><td>Devices, accounts, configs ready</td><td>Environment checklist</td></tr>
+<tr><td>Test Execution</td><td>Run tests, log bugs, retest fixes</td><td>Execution report, bug reports</td></tr>
+<tr><td>Test Closure</td><td>Final report, lessons learned, sign-off</td><td>Test summary report</td></tr>
+</table>
+
+<h3>Shift-Left Testing</h3>
+<p>Involving QA earlier in the process. QA reviews specifications and designs before development starts — not just tests at the end.</p>
+<p><strong>Why it works:</strong> Bugs found in requirements cost almost nothing to fix. Bugs found in production cost 100x more.</p>
+<div class="callout callout-success"><strong>Real example:</strong> A QA Proactive Board where QA reviews specs before dev writes a single line of code. Questions like "what happens if the user has no balance?" are answered in requirements, not discovered as production bugs. Result: near-zero major production incidents over 18 months.</div>
+
+<h3>Test Plan vs Test Strategy</h3>
+<table>
+<tr><th>Aspect</th><th>Test Strategy</th><th>Test Plan</th></tr>
+<tr><td>Level</td><td>Project/company level</td><td>Feature/release level</td></tr>
+<tr><td>Created by</td><td>QA Lead / Manager</td><td>QA Lead / Senior QA</td></tr>
+<tr><td>Content</td><td>Testing approach, tools, types used in org</td><td>Scope, timeline, resources, exit criteria for this release</td></tr>
+<tr><td>Frequency</td><td>Once, updated rarely</td><td>Per project or release</td></tr>
+</table>
+
+<h3>QA Role in Releases</h3>
+<h4>Before</h4>
+<ul>
+<li>Verify all P1 test cases passed</li>
+<li>Confirm all P1/P2 bugs fixed or have approved workarounds</li>
+<li>Run final regression suite</li>
+<li>Sign off release notes, confirm rollback plan</li>
+</ul>
+<h4>During</h4>
+<ul>
+<li>Monitor dashboards (error rates, response times, crash rates)</li>
+<li>Run smoke tests in production immediately after deployment</li>
+</ul>
+<h4>After</h4>
+<ul>
+<li>Watch user-reported issues and support tickets</li>
+<li>Support hotfix or rollback if needed</li>
+<li>Postmortem if anything broke. Update regression suite with gaps found.</li>
+</ul>
+<div class="callout callout-tip">Senior QA mindset: "I bring data, the business makes the call." Document everything in writing. Never block a release on opinion — block on data.</div>
+
+<h3>Rollback vs Hotfix</h3>
+<table>
+<tr><th>Situation</th><th>Choice</th></tr>
+<tr><td>Small focused bug, fix is fast and known</td><td>Hotfix</td></tr>
+<tr><td>Multiple issues, unclear root cause</td><td>Rollback first</td></tr>
+<tr><td>Data corruption happening now</td><td>Rollback immediately, then fix</td></tr>
+<tr><td>Single critical feature broken</td><td>Hotfix if fast, else rollback</td></tr>
+<tr><td>Security breach</td><td>Hotfix immediately + security team</td></tr>
+<tr><td>Third-party service failure</td><td>Disable feature flag, not rollback</td></tr>
+</table>
+
+<h3>A/B, Alpha, Beta Testing</h3>
+<p><strong>A/B Testing:</strong> Half users see version A, half see B. QA tests both versions independently, verifies correct assignment, confirms tracking events fire for both groups.</p>
+<table>
+<tr><th>Aspect</th><th>Alpha</th><th>Beta</th></tr>
+<tr><td>Who tests</td><td>Internal employees</td><td>External invited users</td></tr>
+<tr><td>Environment</td><td>Test or staging</td><td>Production-like</td></tr>
+<tr><td>Stage</td><td>Early, feature complete</td><td>Pre-release</td></tr>
+<tr><td>Goal</td><td>Find major issues</td><td>Real-world feedback</td></tr>
+</table>
+</section>
+
+<!-- TEST DESIGN -->
+<section id="test-design">
+<h2>Test Design Techniques</h2>
+<p>Structured methods to decide WHAT to test. Senior QAs apply these automatically.</p>
+
+<h3>Equivalence Partitioning (EP)</h3>
+<p>Divide inputs into groups where all values behave the same way. Test one value from each partition.</p>
+<p><strong>Example:</strong> Age field, valid 18-65.</p>
+<table>
+<tr><th>Partition</th><th>Range</th><th>Test value</th><th>Expected</th></tr>
+<tr><td>Below valid</td><td>0-17</td><td>15</td><td>Error</td></tr>
+<tr><td>Valid</td><td>18-65</td><td>35</td><td>Accepted</td></tr>
+<tr><td>Above valid</td><td>66+</td><td>70</td><td>Error</td></tr>
+</table>
+
+<h3>Boundary Value Analysis (BVA)</h3>
+<p>Most bugs live at the edges. Test the minimum, maximum, and values just inside and outside each boundary.</p>
+<table>
+<tr><th>Value</th><th>Type</th><th>Expected</th></tr>
+<tr><td>17</td><td>Just below minimum</td><td>Error</td></tr>
+<tr><td>18</td><td>Minimum (valid)</td><td>Accepted</td></tr>
+<tr><td>19</td><td>Just above minimum</td><td>Accepted</td></tr>
+<tr><td>64</td><td>Just below maximum</td><td>Accepted</td></tr>
+<tr><td>65</td><td>Maximum (valid)</td><td>Accepted</td></tr>
+<tr><td>66</td><td>Just above maximum</td><td>Error</td></tr>
+</table>
+<div class="callout callout-tip">Use EP to find partitions, then BVA to test the edges of each. They work together.</div>
+
+<h3>Decision Table Testing</h3>
+<p>When behavior depends on combinations of conditions, map every combination to its outcome.</p>
+<table>
+<tr><th>Condition</th><th>C1</th><th>C2</th><th>C3</th><th>C4</th></tr>
+<tr><td>Account funded?</td><td>Yes</td><td>Yes</td><td>No</td><td>No</td></tr>
+<tr><td>Market open?</td><td>Yes</td><td>No</td><td>Yes</td><td>No</td></tr>
+<tr><td><strong>Allow order?</strong></td><td><strong>Yes</strong></td><td><strong>No</strong></td><td><strong>No</strong></td><td><strong>No</strong></td></tr>
+</table>
+<p>Each column is one test case. Full combination coverage in 4 tests.</p>
+
+<h3>State Transition Testing</h3>
+<p>Map all states and transitions. Each transition is a test case. Also test invalid transitions (can a Filled order be cancelled? It should not be).</p>
+<p><strong>Example — Order lifecycle:</strong> Draft &#x2192; Submitted &#x2192; Processing &#x2192; Filled. Also: Submitted &#x2192; Cancelled, Processing &#x2192; Failed.</p>
+
+<h3>Pairwise Testing</h3>
+<p>Ensures every pair of variables is tested at least once. Most bugs are triggered by 1-2 variables interacting. Pairwise gives high coverage with far fewer test cases.</p>
+<p>OS (Win/Mac) x Browser (Chrome/Firefox/Safari) x Connection (WiFi/4G) = 12 full combinations. Pairwise = 6 tests covering all pairs.</p>
+
+<h3>Error Guessing</h3>
+<p>Experience-based. Common targets: empty inputs, zero, negative numbers, very long strings, special characters <code>' " &lt; &gt; &amp; /</code>, concurrent actions, interruptions (network drop mid-request), first/last items in lists.</p>
+
+<h3>Test Case Templates</h3>
+<h4>Full format</h4>
+<pre><code>Test ID: TC-LOGIN-01
+Title: Verify login with valid credentials
+Priority: P1  Type: Positive
+
+Preconditions:
+- Registered user account exists
+- User is on the login page
+
+Steps:
+1. Enter valid email
+2. Enter valid password
+3. Click "Log In"
+
+Expected:
+- Redirected to dashboard within 2 seconds
+- Welcome message shows username
+- Session cookie created
+
+Traceability: AC-101</code></pre>
+<h4>Checklist format</h4>
+<pre><code>[P1] Login with valid credentials -> dashboard
+[P1] Login with invalid password -> error message
+[P1] Login with empty email -> validation error
+[P2] Email with extra spaces -> trimmed and accepted
+[P2] Session expires after timeout -> redirect to login
+[P3] Login page renders correctly on mobile</code></pre>
+</section>
+
+<!-- DEFECTS -->
+<section id="defects">
+<h2>Defects, Severity and Lifecycle</h2>
+
+<h3>Severity vs Priority</h3>
+<table>
+<tr><th>Concept</th><th>Definition</th><th>Who sets it</th></tr>
+<tr><td>Severity</td><td>Technical impact: how badly the system is broken</td><td>QA Engineer</td></tr>
+<tr><td>Priority</td><td>Business urgency: how soon it must be fixed</td><td>Product Manager</td></tr>
+</table>
+<h4>Severity levels</h4>
+<table>
+<tr><th>Level</th><th>Description</th><th>Example</th></tr>
+<tr><td>Critical (S1)</td><td>System crash, data loss, complete feature failure</td><td>Trade corrupts account balance</td></tr>
+<tr><td>High (S2)</td><td>Major feature broken, no workaround</td><td>Login fails for all iOS users</td></tr>
+<tr><td>Medium (S3)</td><td>Feature partially broken, workaround exists</td><td>Trade history filter broken, search works</td></tr>
+<tr><td>Low (S4)</td><td>Cosmetic or minor UX issue</td><td>Wrong font color on footer</td></tr>
+</table>
+<div class="callout callout-warn">
+<strong>High severity, low priority:</strong> App crashes on 999 chars in a rarely-used settings field. Severe but not urgent.<br><br>
+<strong>Low severity, high priority:</strong> CEO name misspelled on homepage. Tiny but fix it today.
+</div>
+
+<h3>Bug Report Template</h3>
+<pre><code>Title: Buy order fails when leverage = 1:1000 on EUR/USD
+
+Severity: High (S2)  Priority: P1
+Environment: Chrome 120, Win 10, Production v2.4.5
+Frequency: 100% reproducible
+
+Preconditions:
+- Logged in user, funded account ($1000+)
+- Active session, EUR/USD market open
+
+Steps:
+1. Navigate to EUR/USD chart
+2. Click "Buy"
+3. Set leverage to 1:1000
+4. Enter volume 1.0 lots
+5. Click "Place Order"
+
+Expected: Order placed, confirmation shown
+Actual: Spinner 30 seconds, then "Internal Server Error"
+
+Evidence: Screenshot + Network log (500 on POST /api/orders)</code></pre>
+<div class="callout callout-tip">Title formula: [Component] [action] [condition]. "Buy order fails when leverage = 1:1000" is clear. "Trading bug" is useless.</div>
+
+<h3>Defect Lifecycle</h3>
+<table>
+<tr><th>Status</th><th>Meaning</th><th>Who moves it</th></tr>
+<tr><td>New</td><td>Just reported</td><td>QA</td></tr>
+<tr><td>Assigned</td><td>Assigned to developer</td><td>QA Lead / PM</td></tr>
+<tr><td>In Progress</td><td>Developer fixing it</td><td>Developer</td></tr>
+<tr><td>Fixed / Retest</td><td>Developer says it's fixed</td><td>Developer</td></tr>
+<tr><td>Closed</td><td>Fix confirmed by QA</td><td>QA</td></tr>
+<tr><td>Reopened</td><td>Fix didn't work</td><td>QA</td></tr>
+<tr><td>Deferred</td><td>Valid bug, fixed next release</td><td>PM</td></tr>
+<tr><td>Won't Fix</td><td>Valid bug, business won't fix</td><td>PM</td></tr>
+<tr><td>Duplicate</td><td>Already reported</td><td>QA Lead</td></tr>
+<tr><td>Not a Bug</td><td>Expected behavior</td><td>PM / Dev</td></tr>
+</table>
+
+<h3>Defect Metrics</h3>
+<ul>
+<li><strong>Production incident rate:</strong> Bugs escaping to production per release. The most important metric.</li>
+<li><strong>Defect leakage:</strong> Production bugs that should have been caught in testing.</li>
+<li><strong>Reopen rate:</strong> High rate signals dev quality or QA retest process issue.</li>
+<li><strong>Bug aging:</strong> Long-open bugs are a risk signal.</li>
+</ul>
+<div class="callout callout-success"><strong>Never</strong> track "bugs found per QA engineer." It incentivizes trivial bug reporting. The right KPI is production incident rate.</div>
+</section>
+
+<!-- ENTRY AND EXIT CRITERIA -->
+<section id="entry-exit">
+<h2>Entry and Exit Criteria</h2>
+<p>Formal checkpoints defining when testing can START and when it is DONE. They protect QA from being pressured into starting too early or shipping too quickly, and turn release decisions into data-driven checklists instead of gut feelings.</p>
+<div class="callout callout-info"><strong>Entry criteria</strong> = conditions that must be true BEFORE testing begins.<br><strong>Exit criteria</strong> = conditions that must be true BEFORE the product ships.</div>
+
+<h3>Entry Criteria</h3>
+<p>Minimum conditions that must be met before QA begins. Testing before these are met wastes time — you find environment problems, not product bugs.</p>
+<h4>Typical entry criteria checklist</h4>
+<ul>
+<li>Build deployed to test environment successfully</li>
+<li>Development smoke tests passed (basic build stability confirmed)</li>
+<li>All features in scope are implemented and code-reviewed</li>
+<li>Test environment configured correctly (correct data, correct configs)</li>
+<li>Test data prepared and available (user accounts, seeded data, mocked services)</li>
+<li>Required test devices and browsers available</li>
+<li>Acceptance criteria documented and signed off</li>
+<li>Previous blocking defects from last cycle resolved</li>
+</ul>
+<h4>Real example: Trading Platform Feature Release</h4>
+<pre><code>Feature: New leverage settings screen
+
+Entry Criteria:
+1. Build v2.6.0 deployed to staging
+2. Dev smoke test passed: screen loads without crash
+3. AC-201 through AC-215 (leverage specs) finalized
+4. Test accounts with all account types available in staging
+5. Mock trading server responding
+6. Design spec v1.3 attached to the Jira ticket
+
+QA will NOT begin testing until all 6 are confirmed.</code></pre>
+<div class="callout callout-warn">Starting testing without entry criteria means spending half a day debugging an environment issue that dev should have caught — and your test report reflects that unfairly.</div>
+
+<h3>Exit Criteria</h3>
+<p>What must be true before testing is complete and the release can proceed.</p>
+<h4>Typical exit criteria checklist</h4>
+<ul>
+<li>All P1 test cases executed and passed</li>
+<li>All P2 test cases executed — pass or approved-skip with documented risk</li>
+<li>Zero open P1 defects</li>
+<li>Zero open P2 defects, OR each has an approved workaround documented in writing</li>
+<li>P3/P4 defects reviewed — fixed, deferred with PM approval, or accepted as known issues</li>
+<li>Regression suite passed, meeting the agreed threshold (e.g. 98%+)</li>
+<li>Performance baselines verified (response times within SLA)</li>
+<li>UAT sign-off from business stakeholders (if applicable)</li>
+<li>Release notes written and reviewed</li>
+<li>Rollback plan confirmed with DevOps</li>
+<li>QA sign-off formally recorded (Jira, Confluence, or email)</li>
+</ul>
+<h4>Real example: Mobile App Release</h4>
+<pre><code>Release: iOS v4.2 — Login and Account Features
+
+Exit Criteria:
+1. 100% of P1 test cases executed and passed
+2. 95%+ of P2 test cases passed
+3. No open bugs with severity S1 or S2
+4. All S3 bugs reviewed:
+   - 2 deferred to v4.3 (PM approved in writing)
+   - 1 accepted as known issue (logged in release notes)
+5. Full regression suite: 143/145 pass
+   (2 skipped — known flaky, tracked in backlog)
+6. Devices tested: iPhone 14 (iOS 17), iPhone 12 (iOS 16),
+   iPhone SE (iOS 15)
+7. Login response time &lt; 2 sec confirmed on 4G
+8. UAT completed by Product team on June 20
+9. Release notes approved by PM
+10. Rollback to v4.1 confirmed with DevOps (&lt; 5 min)
+
+QA sign-off recorded in Confluence Release Tracker.</code></pre>
+
+<h3>Entry vs Exit: Side by Side</h3>
+<table>
+<tr><th>Aspect</th><th>Entry Criteria</th><th>Exit Criteria</th></tr>
+<tr><td>When</td><td>Before testing starts</td><td>Before release</td></tr>
+<tr><td>Purpose</td><td>Confirm environment is ready to test in</td><td>Confirm product is ready to ship</td></tr>
+<tr><td>Who owns it</td><td>QA with dev support</td><td>QA with PM sign-off</td></tr>
+<tr><td>If not met</td><td>Return build to development</td><td>Block release or get explicit PM exception</td></tr>
+<tr><td>Produces</td><td>Test plan, environment checklist</td><td>Test summary report, release notes</td></tr>
+</table>
+
+<h3>When Exit Criteria Are Not Met</h3>
+<p>QA presents the data. The business decides. Three outcomes:</p>
+<ul>
+<li><strong>Block the release:</strong> Postpone until fixed. Right choice for critical failures.</li>
+<li><strong>Ship with known issues:</strong> PM formally accepts the risk, issues are documented, support team is briefed. QA records this in writing.</li>
+<li><strong>Partial release:</strong> Ship what is ready, disable the broken feature via feature flag.</li>
+</ul>
+<div class="callout callout-success"><strong>Senior answer:</strong> "QA's job is to present data clearly — what passed, what failed, what the risk is. The go/no-go decision belongs to the business. But I make sure it's a documented, informed decision. If the PM ships over my objection, that conversation is in writing."</div>
+
+<h3>Suspension and Resumption Criteria</h3>
+<p>Sometimes testing must pause mid-cycle due to a blocker. Suspension criteria say when to stop. Resumption criteria say when to restart.</p>
+<pre><code>Suspension Criteria (pause testing if):
+- A P1 bug blocks access to the features being tested
+- Test environment becomes unstable or unavailable
+- More than 30% of P1 test cases failing
+  (build is likely not test-ready)
+
+Resumption Criteria (restart when):
+- Blocking P1 bug is fixed and verified in staging
+- Environment restored and confirmed stable
+- Dev confirms a new build with fixes is deployed</code></pre>
+</section>
+
+<!-- ENVIRONMENTS -->
+<section id="environments">
+<h2>Test Environments and Test Data</h2>
+
+<h3>Environment Types</h3>
+<table>
+<tr><th>Environment</th><th>Purpose</th><th>Who uses it</th><th>Data</th></tr>
+<tr><td>Local / Dev</td><td>Developer runs code changes</td><td>Developers</td><td>Mock or personal</td></tr>
+<tr><td>Integration / CI</td><td>Automated tests on every push</td><td>CI pipeline</td><td>Seeded test data</td></tr>
+<tr><td>Staging / QA</td><td>Full QA testing before release</td><td>QA engineers</td><td>Production-like test data</td></tr>
+<tr><td>UAT</td><td>Business stakeholder acceptance</td><td>Product owners</td><td>Realistic scenarios</td></tr>
+<tr><td>Production</td><td>Live product, real users</td><td>Real users</td><td>Real user data</td></tr>
+<tr><td>Hotfix / Patch</td><td>Emergency fix testing in isolation</td><td>QA + dev</td><td>Targeted test data</td></tr>
+</table>
+<div class="callout callout-warn"><strong>Never test destructively in production.</strong> Post-deployment smoke tests are acceptable if non-destructive. No fake accounts in production. No test transactions with real money.</div>
+
+<h3>Test Data Management</h3>
+<h4>Types of test data needed</h4>
+<ul>
+<li><strong>Happy path:</strong> Valid users, funded accounts, correct configurations</li>
+<li><strong>Edge case:</strong> Zero balance, maximum values, expired accounts, locked accounts</li>
+<li><strong>Negative:</strong> Invalid formats, missing required fields, duplicate entries</li>
+<li><strong>Boundary:</strong> Values at the exact edges of valid ranges</li>
+<li><strong>Permission:</strong> Users with different roles — admin, read-only, banned</li>
+</ul>
+<h4>Test data challenges</h4>
+<ul>
+<li><strong>Data decay:</strong> Test accounts expire, seeded data gets modified by other testers</li>
+<li><strong>Data conflicts:</strong> Multiple QAs sharing the same test accounts cause interference</li>
+<li><strong>Privacy:</strong> Never use real production user data in test environments without anonymization</li>
+<li><strong>Data dependency:</strong> Test B depends on data created by Test A — if A fails, B fails too</li>
+</ul>
+<h4>Best practices</h4>
+<ul>
+<li>Each QA owns dedicated test accounts</li>
+<li>Critical tests set up their own data and clean up after</li>
+<li>Production data is anonymized before copying to staging</li>
+<li>Data reset scripts exist to restore environment to a known state</li>
+</ul>
+
+<h3>Environment Issues vs Product Bugs</h3>
+<table>
+<tr><th>Symptom</th><th>Likely cause</th><th>How to confirm</th></tr>
+<tr><td>Bug only on your machine, not others</td><td>Environment / config issue</td><td>Compare configs, test on another machine</td></tr>
+<tr><td>Bug appears for everyone consistently</td><td>Product bug</td><td>Document and report</td></tr>
+<tr><td>Passing yesterday, failing today with no code change</td><td>Test data issue or environment drift</td><td>Check data state, recent deployments</td></tr>
+<tr><td>API 500 only in staging</td><td>Staging config issue</td><td>Check staging logs vs dev environment</td></tr>
+</table>
+<div class="callout callout-tip">Before filing a bug, always reproduce it on a clean environment or second device. Filing environment issues as product bugs is one of the fastest ways to lose developer trust.</div>
+</section>
+
+<!-- SQL -->
+<section id="sql">
+<h2>SQL for QA</h2>
+<p>SQL is essential for senior QA. Use it to verify data integrity, find database-layer bugs, and answer questions that logs alone cannot answer.</p>
+
+<div class="toc"><h4>Contents</h4><ul>
+<li>SELECT, FROM, WHERE</li>
+<li>ORDER BY, DISTINCT</li>
+<li>GROUP BY, aggregates, HAVING</li>
+<li>INNER JOIN, LEFT JOIN</li>
+<li>NULL handling</li>
+<li>LIKE, IN, BETWEEN, LIMIT</li>
+<li>Query execution order</li>
+<li>Common mistakes</li>
+<li>Real QA use cases</li>
+</ul></div>
+
+<h3>The Mental Model</h3>
+<p>Table <code>users</code>:</p>
+<table>
+<tr><th>id</th><th>username</th><th>age</th><th>country</th><th>balance</th></tr>
+<tr><td>1</td><td>argam</td><td>36</td><td>Armenia</td><td>1500</td></tr>
+<tr><td>2</td><td>john</td><td>25</td><td>USA</td><td>200</td></tr>
+<tr><td>3</td><td>maria</td><td>42</td><td>Spain</td><td>5000</td></tr>
+<tr><td>4</td><td>ali</td><td>30</td><td>Dubai</td><td>800</td></tr>
+<tr><td>5</td><td>anna</td><td>28</td><td>Armenia</td><td>100</td></tr>
+</table>
+<p>TABLE = the box. COLUMN = a category. ROW = one record. Primary key = unique identifier per row (the id column).</p>
+
+<h3>SELECT and FROM</h3>
+<pre><code>SELECT * FROM users                    -- all columns, all rows
+SELECT username, country FROM users    -- specific columns only</code></pre>
+<div class="callout callout-warn">SELECT without FROM is an error. Always need both.</div>
+
+<h3>WHERE</h3>
+<pre><code>SELECT * FROM users WHERE country = 'Armenia'
+SELECT * FROM users WHERE balance > 500
+SELECT * FROM users WHERE country = 'Armenia' AND balance > 500
+SELECT * FROM users WHERE country = 'Armenia' OR country = 'Spain'</code></pre>
+<div class="callout callout-warn">Single quotes for text ('Armenia'). No quotes for numbers (500).</div>
+
+<h3>ORDER BY and DISTINCT</h3>
+<pre><code>SELECT * FROM users ORDER BY balance DESC         -- highest first
+SELECT * FROM users ORDER BY age ASC              -- youngest first
+SELECT * FROM users ORDER BY country ASC, balance DESC
+SELECT DISTINCT country FROM users                -- no duplicates
+SELECT COUNT(DISTINCT country) FROM users         -- count unique</code></pre>
+
+<h3>GROUP BY and Aggregates</h3>
+<pre><code>SELECT country, COUNT(*) AS user_count FROM users GROUP BY country
+SELECT country, SUM(balance) AS total FROM users GROUP BY country
+SELECT country, AVG(balance) AS avg FROM users GROUP BY country
+SELECT MAX(balance) AS highest, MIN(balance) AS lowest FROM users</code></pre>
+<div class="callout callout-warn">With GROUP BY, SELECT can only contain: (1) the grouped column, (2) aggregate functions. COUNT(*) cannot go in WHERE. SUM(*) does not exist — use SUM(column_name).</div>
+
+<h3>HAVING</h3>
+<pre><code>SELECT country, COUNT(*) AS user_count
+FROM users GROUP BY country
+HAVING COUNT(*) > 1    -- only countries with more than 1 user</code></pre>
+<p><strong>WHERE</strong> filters rows BEFORE grouping. <strong>HAVING</strong> filters groups AFTER GROUP BY.</p>
+
+<h3>JOIN</h3>
+<p>Table <code>orders</code>: id, user_id, amount, status.</p>
+<div class="callout callout-info">JOIN produces a temporary combined result. It does not create a permanent table. The table in FROM is the LEFT table.</div>
+<pre><code>-- INNER JOIN: only rows with matches in both tables
+SELECT users.username, orders.amount
+FROM users
+INNER JOIN orders ON users.id = orders.user_id
+-- Returns argam and maria (they have orders). Others excluded.
+
+-- LEFT JOIN: all left table rows, NULL if no match
+SELECT users.username, orders.amount
+FROM users
+LEFT JOIN orders ON users.id = orders.user_id
+-- Returns ALL users. john/ali/anna get NULL for amount.
+
+-- Classic QA: find users who never placed an order
+SELECT users.username FROM users
+LEFT JOIN orders ON users.id = orders.user_id
+WHERE orders.id IS NULL</code></pre>
+
+<h3>NULL Handling</h3>
+<div class="callout callout-warn">NULL is the absence of a value. You CANNOT use = to check for it.</div>
+<pre><code>WHERE country IS NULL      -- Correct
+WHERE country = NULL       -- Wrong, always returns 0 rows
+WHERE country IS NOT NULL  -- Correct</code></pre>
+
+<h3>LIKE, IN, BETWEEN, LIMIT</h3>
+<pre><code>-- LIKE: % = any characters, _ = exactly one character
+WHERE username LIKE 'a%'         -- starts with a
+WHERE username LIKE '%ar%'       -- contains ar
+
+-- IN: shortcut for multiple OR
+WHERE country IN ('Armenia', 'Spain', 'USA')
+
+-- BETWEEN: inclusive
+WHERE age BETWEEN 25 AND 35      -- same as >= 25 AND <= 35
+
+-- LIMIT with OFFSET for pagination
+SELECT * FROM users ORDER BY username LIMIT 10 OFFSET 20  -- rows 21-30</code></pre>
+
+<h3>Query Execution Order</h3>
+<ol><li>FROM</li><li>JOIN</li><li>WHERE</li><li>GROUP BY</li><li>HAVING</li><li>SELECT</li><li>ORDER BY</li><li>LIMIT</li></ol>
+<p>Why you cannot use a SELECT alias in WHERE (WHERE runs before SELECT), but can in ORDER BY.</p>
+
+<h3>Common Mistakes</h3>
+<table>
+<tr><th>Mistake</th><th>Fix</th></tr>
+<tr><td>SELECT username, COUNT(*) without GROUP BY</td><td>Add GROUP BY username</td></tr>
+<tr><td>WHERE country = NULL</td><td>WHERE country IS NULL</td></tr>
+<tr><td>WHERE COUNT(*) &gt; 1</td><td>HAVING COUNT(*) &gt; 1</td></tr>
+<tr><td>SUM(*)</td><td>SUM(column_name)</td></tr>
+<tr><td>WHERE username = LIKE 'a%'</td><td>WHERE username LIKE 'a%'</td></tr>
+</table>
+
+<h3>Real QA Use Cases</h3>
+<pre><code>-- Verify user created after registration
+SELECT * FROM users WHERE username = 'newuser123'
+
+-- Check no duplicate emails
+SELECT email, COUNT(*) FROM users
+GROUP BY email HAVING COUNT(*) > 1
+
+-- Find pending orders older than 1 hour (stuck state?)
+SELECT * FROM orders WHERE status = 'pending'
+AND created_at < NOW() - INTERVAL 1 HOUR
+
+-- Find users who never logged in
+SELECT users.username FROM users
+LEFT JOIN sessions ON users.id = sessions.user_id
+WHERE sessions.id IS NULL</code></pre>
+</section>
+
+<!-- API TESTING -->
+<section id="api">
+<h2>API Testing</h2>
+
+<div class="toc"><h4>Contents</h4><ul>
+<li>What is an API</li>
+<li>HTTP methods, headers, params</li>
+<li>HTTP status codes</li>
+<li>REST vs SOAP vs GraphQL</li>
+<li>Authentication types</li>
+<li>What to test in any API</li>
+<li>Idempotency and concurrency</li>
+<li>Rate limiting and pagination</li>
+<li>Postman: tests, variables, chaining</li>
+<li>Swagger / OpenAPI</li>
+</ul></div>
+
+<h3>What is an API</h3>
+<p>Application Programming Interface. How two software systems talk to each other.</p>
+<div class="callout callout-info"><strong>Restaurant analogy:</strong> You (client) order food. The kitchen (server) makes it. The waiter (API) carries the order and brings the result. You never see inside the kitchen.</div>
+
+<h3>HTTP Methods</h3>
+<table>
+<tr><th>Method</th><th>What it does</th><th>Example</th><th>Changes data?</th></tr>
+<tr><td>GET</td><td>Read data</td><td>Get user info</td><td>No</td></tr>
+<tr><td>POST</td><td>Create new data</td><td>Create order</td><td>Yes</td></tr>
+<tr><td>PUT</td><td>Replace entire resource</td><td>Update full profile</td><td>Yes</td></tr>
+<tr><td>PATCH</td><td>Update part of resource</td><td>Update email only</td><td>Yes</td></tr>
+<tr><td>DELETE</td><td>Delete a resource</td><td>Cancel order</td><td>Yes</td></tr>
+</table>
+<div class="callout callout-warn">GET must NEVER modify data. If a GET changes something on the server, that is a bug or REST violation.</div>
+
+<h3>Anatomy of a Request</h3>
+<pre><code>POST https://api.example.com/orders?dry_run=false
+
+Headers:
+  Authorization: Bearer eyJhbGc...
+  Content-Type: application/json
+
+Body:
+{
+  "symbol": "EUR/USD",
+  "type": "buy",
+  "volume": 1.0,
+  "leverage": 100
+}</code></pre>
+
+<h3>Headers</h3>
+<table>
+<tr><th>Header</th><th>What it does</th></tr>
+<tr><td>Authorization</td><td>Who is making the request (token or API key)</td></tr>
+<tr><td>Content-Type</td><td>Format of body you are sending</td></tr>
+<tr><td>Accept</td><td>Format you want back</td></tr>
+<tr><td>X-API-Key</td><td>Alternative auth method</td></tr>
+<tr><td>X-Request-ID</td><td>Unique ID for tracing requests through logs</td></tr>
+</table>
+
+<h3>Query Params vs Path Params vs Body</h3>
+<table>
+<tr><th>Type</th><th>Location</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>Path param</td><td>Inside URL path</td><td>Identify a specific resource</td><td>/users/123</td></tr>
+<tr><td>Query param</td><td>After ? in URL</td><td>Filter, sort, paginate</td><td>?status=open&amp;limit=10</td></tr>
+<tr><td>Body</td><td>Request body</td><td>Send data to create or update</td><td>POST/PUT/PATCH body</td></tr>
+</table>
+
+<h3>HTTP Status Codes</h3>
+<table>
+<tr><th>Code</th><th>Meaning</th><th>When</th></tr>
+<tr><td>200</td><td>OK</td><td>Successful GET, PUT, PATCH</td></tr>
+<tr><td>201</td><td>Created</td><td>Successful POST</td></tr>
+<tr><td>204</td><td>No Content</td><td>Successful DELETE</td></tr>
+<tr><td>400</td><td>Bad Request</td><td>Missing field, wrong type</td></tr>
+<tr><td>401</td><td>Unauthorized</td><td>No token or expired token</td></tr>
+<tr><td>403</td><td>Forbidden</td><td>Valid token, no permission</td></tr>
+<tr><td>404</td><td>Not Found</td><td>Resource doesn't exist</td></tr>
+<tr><td>405</td><td>Method Not Allowed</td><td>GET on POST-only endpoint</td></tr>
+<tr><td>409</td><td>Conflict</td><td>Duplicate entry, state conflict</td></tr>
+<tr><td>422</td><td>Unprocessable Entity</td><td>Format valid, content invalid</td></tr>
+<tr><td>429</td><td>Too Many Requests</td><td>Rate limit hit</td></tr>
+<tr><td>500</td><td>Internal Server Error</td><td>Bug on the server</td></tr>
+<tr><td>503</td><td>Service Unavailable</td><td>Server down or overloaded</td></tr>
+</table>
+<div class="callout callout-tip"><strong>401 vs 403:</strong> 401 = "I don't know who you are." 403 = "I know exactly who you are — you just can't do this."</div>
+
+<h3>REST vs SOAP vs GraphQL</h3>
+<table>
+<tr><th>Aspect</th><th>REST</th><th>SOAP</th><th>GraphQL</th></tr>
+<tr><td>Type</td><td>Architectural style</td><td>Protocol (strict rules)</td><td>Query language</td></tr>
+<tr><td>Format</td><td>Usually JSON</td><td>Always XML</td><td>JSON</td></tr>
+<tr><td>Methods</td><td>GET/POST/PUT/DELETE</td><td>Only POST</td><td>Query / Mutation</td></tr>
+<tr><td>Best for</td><td>Modern web and mobile</td><td>Banking, enterprise, legacy</td><td>Complex UIs, mobile apps</td></tr>
+</table>
+<p><strong>GraphQL for QA:</strong> One request fetches exactly the fields you ask for. Test for: invalid field names (should error clearly), deeply nested queries (can overload the server), introspection disabled in production (security: introspection exposes the full schema).</p>
+
+<h3>Authentication Types</h3>
+<ul>
+<li><strong>API Key:</strong> Key in header or query param. Simple. If leaked, anyone can use it.</li>
+<li><strong>Basic Auth:</strong> Username:password base64-encoded. Old. Only acceptable over HTTPS.</li>
+<li><strong>Bearer Token (JWT):</strong> Authorization header. Most common. Contains encoded user info + expiry.</li>
+<li><strong>OAuth 2.0:</strong> "Sign in with Google." App gets a token, never sees the user's password.</li>
+</ul>
+
+<h3>What to Test in Any API</h3>
+<h4>Functional</h4>
+<ul>
+<li>All methods work as documented</li>
+<li>Response body matches documented schema</li>
+<li>Correct status codes for each scenario</li>
+</ul>
+<h4>Validation and edge cases</h4>
+<ul>
+<li>Missing required fields &#x2192; 400 with clear error</li>
+<li>Wrong data types &#x2192; 400</li>
+<li>Boundary values: max length, zero, negative numbers</li>
+<li>Empty arrays, null values</li>
+</ul>
+<h4>Auth and authorization</h4>
+<ul>
+<li>No token &#x2192; 401</li>
+<li>Expired/invalid token &#x2192; 401</li>
+<li>Valid token, wrong role &#x2192; 403</li>
+<li>User A accessing User B's resource &#x2192; 403 (IDOR vulnerability if it returns 200)</li>
+</ul>
+<h4>Error handling</h4>
+<ul>
+<li>Errors have clear human-readable messages</li>
+<li>Errors do not expose stack traces or internal paths (security risk)</li>
+<li>Consistent error format across the whole API</li>
+</ul>
+<h4>Performance and security</h4>
+<ul>
+<li>Response time within SLA</li>
+<li>Rate limiting works (429 after N requests)</li>
+<li>All endpoints use HTTPS</li>
+<li>Sensitive data never in URLs</li>
+<li>SQL injection and XSS payloads handled safely</li>
+</ul>
+
+<h3>Idempotency</h3>
+<table>
+<tr><th>Method</th><th>Idempotent?</th><th>Why</th></tr>
+<tr><td>GET</td><td>Yes</td><td>Only reads, never changes state</td></tr>
+<tr><td>PUT</td><td>Yes</td><td>Replace with same data = same result</td></tr>
+<tr><td>DELETE</td><td>Yes</td><td>Delete twice = same result</td></tr>
+<tr><td>POST</td><td>No</td><td>Creates new resource every call</td></tr>
+<tr><td>PATCH</td><td>Depends</td><td>Depends on implementation</td></tr>
+</table>
+<div class="callout callout-warn"><strong>Test:</strong> Send the same POST twice. Check whether one or two records are created. A properly implemented API should handle retries without creating duplicates.</div>
+
+<h3>Concurrency Testing</h3>
+<p>User has $100. Two browser tabs place a $100 order simultaneously. Expected: one succeeds, one fails with "Insufficient balance." Race condition bug: both succeed, balance goes to -$100.</p>
+<p>Test using Postman Collection Runner with parallel iterations, or two simultaneous curl/script calls.</p>
+
+<h3>Rate Limiting and Pagination</h3>
+<h4>Rate limiting tests</h4>
+<ul>
+<li>Normal speed &#x2192; all succeed</li>
+<li>N+1 requests in the window &#x2192; 429</li>
+<li>Wait for window reset &#x2192; succeed again</li>
+<li>Response includes Retry-After header</li>
+</ul>
+<h4>Pagination tests</h4>
+<ul>
+<li>First page returns correct count (e.g. 10 items)</li>
+<li>Last page returns remaining items, not empty results</li>
+<li>Total count in response is correct</li>
+<li>Requesting beyond last page &#x2192; empty list, not an error</li>
+</ul>
+
+<h3>Postman: Tests, Variables, Chaining</h3>
+<pre><code>// Status code
+pm.test("Status is 200", () => pm.response.to.have.status(200));
+
+// Response time
+pm.test("Time < 500ms", () => pm.expect(pm.response.responseTime).to.be.below(500));
+
+// Field exists
+pm.test("Has order_id", () => {
+    pm.expect(pm.response.json()).to.have.property('order_id');
+});
+
+// No sensitive data leaking
+pm.test("No password in response", () => {
+    pm.expect(pm.response.json()).to.not.have.property('password');
+});
+
+// Save token from login for next request
+const token = pm.response.json().access_token;
+pm.environment.set("token", token);
+// Next request header: Authorization: Bearer {{token}}</code></pre>
+
+<h3>Swagger / OpenAPI</h3>
+<p>Standard format to document REST APIs. Most modern APIs have a Swagger UI to see all endpoints and try them live.</p>
+<p><strong>When given a Swagger URL and asked to test it:</strong></p>
+<ol>
+<li>Read endpoint description and purpose</li>
+<li>Identify required vs optional parameters</li>
+<li>Try with valid data &#x2192; verify 200 and response matches schema</li>
+<li>Try with invalid data &#x2192; expect 400</li>
+<li>Test boundary values</li>
+<li>Remove auth token &#x2192; expect 401</li>
+<li>Try another user's resource ID &#x2192; expect 403</li>
+<li>Check documented error codes match what the API actually returns</li>
+</ol>
+</section>
+
+<!-- MOBILE TESTING -->
+<section id="mobile">
+<h2>Mobile Testing</h2>
+
+<h3>Mobile Testing Checklist</h3>
+<h4>Device coverage</h4>
+<ul>
+<li>iPhone 12-16 (screen sizes and aspect ratios)</li>
+<li>Samsung Galaxy flagship + mid-range</li>
+<li>Google Pixel (pure Android reference device)</li>
+<li>Tablet layouts if supported</li>
+</ul>
+<h4>OS versions</h4>
+<ul>
+<li>iOS: current + 2 previous majors (iOS 18, 17, 16)</li>
+<li>Android: 12, 13, 14, 15</li>
+<li>Test against the latest beta when a major OS release is near</li>
+</ul>
+<h4>Network conditions</h4>
+<ul>
+<li>WiFi (strong), 4G/LTE (normal), 3G (slow — throttle in Charles or Xcode)</li>
+<li>Network drop mid-operation (during payment, file upload)</li>
+<li>Complete offline mode</li>
+<li>WiFi &#x2192; 4G handoff while app is active</li>
+</ul>
+<h4>Mobile-specific behaviors</h4>
+<ul>
+<li><strong>Push notifications:</strong> Arrive correctly, tap opens correct screen, badge updates</li>
+<li><strong>Deep links:</strong> Opening app via URL navigates to correct screen</li>
+<li><strong>Background / foreground:</strong> App paused and resumed without losing state</li>
+<li><strong>Biometric auth:</strong> Face ID / Fingerprint works; fallback to PIN if it fails</li>
+<li><strong>Permissions:</strong> Camera, location, notifications — test when user denies</li>
+<li><strong>Incoming call during critical flow:</strong> Phone call during payment</li>
+<li><strong>Battery saver mode:</strong> Background processes may be limited</li>
+</ul>
+
+<h3>iOS vs Android Differences</h3>
+<table>
+<tr><th>Aspect</th><th>iOS</th><th>Android</th></tr>
+<tr><td>Distribution</td><td>App Store only</td><td>Google Play + sideloading</td></tr>
+<tr><td>OS fragmentation</td><td>Low (rapid adoption)</td><td>High (many versions active)</td></tr>
+<tr><td>Devices</td><td>Apple only — controlled hardware</td><td>Hundreds of manufacturers</td></tr>
+<tr><td>Notifications</td><td>APNs</td><td>FCM (Firebase Cloud Messaging)</td></tr>
+<tr><td>Back navigation</td><td>Swipe gesture or nav bar</td><td>System back button or gesture</td></tr>
+<tr><td>UI test tools</td><td>XCUITest, Appium</td><td>Espresso, Appium, UiAutomator</td></tr>
+</table>
+
+<h3>iOS Version Updates</h3>
+<p>When Apple releases a new major iOS version, every app needs regression testing. APIs may have changed, privacy rules may have updated, UI elements may render differently. Test against iOS beta early — before public release — so fixes can happen before users update.</p>
+
+<h3>SDK Updates</h3>
+<p>Apps use SDKs for analytics, payments, ads, crash reporting. When an SDK updates: behavior may change, new bugs may appear, integration may break, new permissions may be required. QA checklist: test all features using the SDK, verify analytics events fire, test payment flows end-to-end, test fallback if the SDK fails.</p>
+
+<h3>Network Tools: Charles Proxy and DevTools</h3>
+<ul>
+<li>See exact API calls made when you tap a button</li>
+<li>Verify API data matches what the UI shows</li>
+<li>Simulate slow network or server errors (modify responses)</li>
+<li>Detect security issues: passwords in URLs, missing HTTPS, sensitive headers</li>
+</ul>
+<p><strong>Charles setup:</strong> Install on Mac, set phone to use Mac as HTTP proxy, install Charles SSL cert on device. All traffic becomes visible and interceptable.</p>
+</section>
+
+<!-- SENIOR INSIGHTS -->
+<section id="senior">
+<h2>Senior-Level Insights</h2>
+<p>Questions that separate seniors from juniors. Know these cold.</p>
+
+<h3>1. REST is a convention, not a law</h3>
+<h4>Common violations you will encounter</h4>
+<ul>
+<li>POST returns 200 instead of 201</li>
+<li>GET /orders/456/cancel actually cancels the order (GET must never modify data)</li>
+<li>POST /createOrder instead of POST /orders (action URL vs resource URL)</li>
+<li>Returns 200 with <code>{"success": false, "error": "..."}</code> instead of proper error code</li>
+</ul>
+<div class="callout callout-success"><strong>Senior answer:</strong> "REST is a convention, not an enforced protocol. APIs vary widely. As QA I check two things: what documentation says, and what the API actually does. The gap between them is exactly where bugs live."</div>
+
+<h3>2. GET is less secure than POST — and POST is not automatically secure</h3>
+<h4>Why GET leaks</h4>
+<ul>
+<li>URL logged in server logs, proxy logs, CDN logs, analytics tools</li>
+<li>URL ends up in browser history, can be bookmarked or shared</li>
+<li>Referrer header sends the URL to third parties</li>
+<li>CSRF: an image tag with a malicious GET URL in its src triggers the action automatically</li>
+</ul>
+<h4>Why POST is not automatically secure</h4>
+<ul>
+<li>POST body is still readable in network traffic without HTTPS</li>
+<li>POST does not provide encryption — HTTPS does that</li>
+<li>POST does not prevent CSRF — CSRF tokens do that</li>
+</ul>
+<div class="callout callout-success"><strong>Senior answer:</strong> "GET puts data in the URL which gets logged across infrastructure. POST puts it in the body. But real security needs HTTPS for encryption, authentication tokens for access control, CSRF tokens for form protection, and input validation."</div>
+
+<h3>3. Does an API work offline? (the trick question)</h3>
+<ul>
+<li><strong>Web/HTTP API:</strong> Needs internet. Cannot complete offline.</li>
+<li><strong>OS API:</strong> Camera, GPS, file system — work fully offline.</li>
+<li><strong>Library API:</strong> Local functions. No internet needed.</li>
+</ul>
+<p>Modern offline-first apps queue HTTP requests locally and sync when connection returns. From the user's perspective it seems to work offline.</p>
+<div class="callout callout-success"><strong>Senior answer:</strong> "It depends on which kind of API. The strongest move is to ask 'Do you mean web/HTTP APIs or APIs in general?' — clarifying before answering is itself a senior-level response."</div>
+
+<h3>4. Race conditions and concurrent updates</h3>
+<ul>
+<li><strong>Without locking:</strong> Last write wins. One update silently overwrites the other.</li>
+<li><strong>Optimistic locking:</strong> Record has a version number. If it changed since you read it, update rejected with 409. User refreshes and retries.</li>
+<li><strong>Pessimistic locking:</strong> Record locked while one user edits. Others wait.</li>
+</ul>
+<p>Critical in trading and banking. Test by sending two conflicting requests simultaneously.</p>
+
+<h3>5. Other curveball questions</h3>
+<h4>Does a website work without JavaScript?</h4>
+<p>SPAs (React, Angular, Vue): completely broken. Server-rendered sites: mostly works. Progressive enhancement: basic functionality works, JS adds features.</p>
+<h4>Is HTTPS enough for security?</h4>
+<p>No. HTTPS encrypts transit only. Does not prevent SQL injection, broken auth, weak passwords, XSS, CSRF, IDOR, business logic flaws.</p>
+<h4>Authentication vs authorization</h4>
+<p><strong>Authentication</strong> = WHO are you? <strong>Authorization</strong> = WHAT can you do? You can be authenticated but not authorized.</p>
+<h4>Can API testing replace UI testing?</h4>
+<p>No. API covers backend logic. UI catches visual bugs, browser rendering, UX, accessibility. They complement each other.</p>
+<h4>If a test passes 100 times, can you fully trust it?</h4>
+<p>Not necessarily. Could have environmental dependencies, be testing the wrong thing, or consistently masking a bug. Trust comes from test design quality, not repetition.</p>
+<h4>When do you stop testing?</h4>
+<p>You make a risk-based decision. Testing stops when exit criteria are met, risk is acceptable, and the cost of more testing exceeds the expected benefit. QA provides data; the business makes the go/no-go call.</p>
+</section>
+
+<!-- INTERVIEW PREP -->
+<section id="interview">
+<h2>Interview Prep</h2>
+
+<h3>Opening Pitch (45 seconds)</h3>
+<p>Adapt this structure to your own background:</p>
+<div class="callout callout-info">"Thanks for taking the time. I'm a Senior QA Engineer with [X] years of experience. The last [Y] years I led a QA team at [Company], covering [mobile/web/backend]. We delivered [release cadence] releases with [result]. I'm looking for my next senior role where I can apply that leadership and process experience."</div>
+
+<h3>The Three Pillars</h3>
+<ol>
+<li><strong>Quality leadership.</strong> Led QA across multiple squads. Focus on right KPIs: production incident rate — not bug counts per engineer.</li>
+<li><strong>Shift-left process.</strong> QA reviews specifications before development starts. The cheapest bug is the one that was never written.</li>
+<li><strong>Test prioritization.</strong> Risk-based decisions on what gets manual vs automation. Reduced regression from a full day to under 2 hours by testing the right things.</li>
+</ol>
+
+<h3>Tough Questions</h3>
+
+<h4>"What's your biggest weakness?"</h4>
+<div class="callout callout-info">"Initially I was too thorough — wanting to test every edge case before signing off. Over time I learned to prioritize ruthlessly by business risk. The balance between depth and pragmatism is something I actively work on."</div>
+
+<h4>"How do you handle pressure?"</h4>
+<div class="callout callout-info">"I focus on what I can control. Break the work into smaller pieces, prioritize highest-risk items first, communicate clearly about what is covered and what is not. Panic doesn't help. Clarity does."</div>
+
+<h4>"How do you handle disagreement with developers?"</h4>
+<div class="callout callout-info">"I bring data, not opinions. If we disagree about severity, I show user impact and business risk. Never personal. Quality is shared ownership, not QA vs Dev."</div>
+
+<h4>"P1 bug found the day before release. PM wants to ship. What do you do?"</h4>
+<div class="callout callout-info">"Document the bug. Write a risk assessment: user impact, business risk, workaround if any. Send it in writing to PM and EM so the decision is informed and recorded. If they ship — that is a business decision made with full information. My job is to make sure it's documented, not to make it for them."</div>
+
+<h4>"How do you prioritize when time is short?"</h4>
+<div class="callout callout-info">"Three layers: (1) what changed in this release — test those areas and their integrations. (2) highest business risk — login, payments, core flows, anything money-related. (3) what areas the code changes could have broken. I communicate coverage explicitly: 'I tested X, Y, Z. I did not test A and B — those are the residual risks.'"</div>
+
+<h3>AI-Augmented QA</h3>
+<div class="callout callout-info">"AI changed senior QA work fundamentally. Three uses: (1) accelerating test design — describe the feature, AI drafts test cases I review and refine. (2) domain learning — learned trading platform internals in days using AI. (3) automation scripting — AI generates initial code, I review logic and outcomes. My role shifts to orchestrating, reviewing, making strategic decisions."</div>
+
+<h3>Killer Phrases</h3>
+<ul>
+<li>"My KPIs were production incident rate, not bug counts per engineer."</li>
+<li>"I bring data, not opinions."</li>
+<li>"Risk-based prioritization over exhaustive coverage."</li>
+<li>"Shift-left prevents bugs from being written, not just caught."</li>
+<li>"The cheapest bug is the one that was never written."</li>
+<li>"AI accelerates execution. Strategic decisions stay human."</li>
+<li>"Senior manual QA is irreplaceable for exploratory testing — that's where the unexpected bugs live."</li>
+<li>"Don't just celebrate green tests — validate that red tests also fail correctly."</li>
+<li>"I communicate coverage explicitly: what I tested and what I didn't."</li>
+</ul>
+</section>
+
+<!-- COMMON MISTAKES -->
+<section id="mistakes">
+<h2>Common QA Interview Mistakes</h2>
+<p>What NOT to say. These patterns immediately signal a junior mindset, even from experienced candidates.</p>
+
+<h3>Mistake 1: "My job is to find bugs"</h3>
+<p>Your job is to reduce risk and provide information that enables good decisions. Finding bugs is a side effect, not the goal. Optimizing for bug count leads to useless test cases.</p>
+<div class="callout callout-warn">Better: "My job is to provide accurate information about product quality so the team can make informed release decisions."</div>
+
+<h3>Mistake 2: "I test everything"</h3>
+<p>Exhaustive testing is impossible. Every interviewer knows this. Saying it signals either a lack of understanding or dishonesty. Risk-based prioritization is the correct answer.</p>
+<div class="callout callout-warn">Better: "I prioritize test coverage based on business risk, change impact, and historical defect patterns."</div>
+
+<h3>Mistake 3: Measuring quality by bug count</h3>
+<p>More bugs can mean a bad product or good testing. Fewer bugs can mean high quality or shallow testing. The right metrics: production incident rate, defect leakage, coverage of critical paths.</p>
+
+<h3>Mistake 4: Confusing severity and priority</h3>
+<p>Asked constantly, failed constantly. Severity = technical impact (QA sets it). Priority = business urgency (PM sets it). They are completely independent. A cosmetic bug can be high priority. A crash can be low priority. Know the difference cold.</p>
+
+<h3>Mistake 5: Vague bug reports</h3>
+<p>"Login doesn't work" or "Something is wrong on the home page" signal a junior immediately. Every report needs: clear title, steps to reproduce, expected vs actual, environment, evidence. A developer should reproduce it from the report alone without a single follow-up question.</p>
+
+<h3>Mistake 6: Not asking clarifying questions</h3>
+<p>When given a "test this" task in an interview — a screen, feature, or API — the first thing a senior QA does is ask: What is the purpose? Who are the users? What are the acceptance criteria? What is the most critical flow? Jumping straight into test cases without context is a junior pattern.</p>
+
+<h3>Mistake 7: "Automation will replace manual testing"</h3>
+<p>Automation handles repetitive regression well. It cannot handle exploratory testing, usability, new features, or unscripted scenarios. Senior QAs know both have permanent roles and that they complement each other.</p>
+
+<h3>Mistake 8: Not knowing your own resume</h3>
+<p>If you listed a tool, framework, or methodology, be ready to explain it in detail with a real example. Listing "Selenium" without explaining how a test is structured, or listing "Agile" without knowing what happens in a sprint, are immediate red flags.</p>
+</section>
+
+<!-- GLOSSARY -->
+<section id="glossary">
+<h2>QA Glossary and Tools Reference</h2>
+
+<h3>Key Terms</h3>
+<table>
+<tr><th>Term</th><th>Plain-language definition</th></tr>
+<tr><td>Acceptance Criteria (AC)</td><td>Specific conditions a feature must meet to be considered done. Written before development starts.</td></tr>
+<tr><td>Regression</td><td>Re-testing existing features after changes to confirm nothing broke.</td></tr>
+<tr><td>Flaky test</td><td>A test that passes sometimes and fails other times with no code change. Unreliable.</td></tr>
+<tr><td>RTM</td><td>Requirements Traceability Matrix. Table linking requirements to test cases.</td></tr>
+<tr><td>CI/CD</td><td>Continuous Integration / Continuous Deployment. Automated pipelines that build, test, and deploy code on every change.</td></tr>
+<tr><td>Feature flag</td><td>A toggle that enables or disables a feature without a deployment. Used for gradual rollouts and A/B tests.</td></tr>
+<tr><td>IDOR</td><td>Insecure Direct Object Reference. Vulnerability where user accesses another user's resource by changing an ID.</td></tr>
+<tr><td>Rollback</td><td>Reverting to the previous deployment version after a critical issue.</td></tr>
+<tr><td>Hotfix</td><td>Emergency fix applied directly to production for a critical issue.</td></tr>
+<tr><td>Shift-left</td><td>Involving QA earlier in the process — reviewing specs before development starts.</td></tr>
+<tr><td>Test debt</td><td>Tests that should have been written but weren't. Similar to technical debt.</td></tr>
+<tr><td>Idempotency</td><td>Calling an endpoint multiple times produces the same result as calling it once.</td></tr>
+<tr><td>JWT</td><td>JSON Web Token. Self-contained token for authentication in REST APIs.</td></tr>
+<tr><td>OAuth 2.0</td><td>Authorization framework for "Sign in with Google/Apple." App gets a token, never sees the password.</td></tr>
+<tr><td>SLA</td><td>Service Level Agreement. Performance commitment — e.g. "API responds in &lt;500ms for 99% of requests."</td></tr>
+<tr><td>Exploratory charter</td><td>Short guide for an exploratory session: what to explore, what questions to answer.</td></tr>
+</table>
+
+<h3>Tools Reference</h3>
+<table>
+<tr><th>Tool</th><th>What it does</th><th>Category</th></tr>
+<tr><td>Postman</td><td>API request building, testing, collections, environment variables</td><td>API Testing</td></tr>
+<tr><td>Charles Proxy</td><td>Intercepts HTTP/HTTPS traffic on mobile and desktop</td><td>Network</td></tr>
+<tr><td>Browser DevTools</td><td>Network tab, console, storage — built into all browsers</td><td>Network / Web</td></tr>
+<tr><td>Jira</td><td>Bug tracking, sprint management</td><td>Bug Tracking</td></tr>
+<tr><td>TestRail</td><td>Test case management, test run tracking, reporting</td><td>Test Management</td></tr>
+<tr><td>Selenium</td><td>Browser automation for web UI</td><td>Automation</td></tr>
+<tr><td>Playwright</td><td>Modern browser automation, faster and more reliable than Selenium</td><td>Automation</td></tr>
+<tr><td>Appium</td><td>Mobile automation for iOS and Android</td><td>Mobile Automation</td></tr>
+<tr><td>k6 / JMeter</td><td>Load and performance testing</td><td>Performance</td></tr>
+<tr><td>Swagger / OpenAPI</td><td>API documentation with interactive UI to test endpoints live</td><td>API Documentation</td></tr>
+<tr><td>Xcode Simulator</td><td>iOS device simulator for Mac</td><td>Mobile Testing</td></tr>
+<tr><td>Android Studio Emulator</td><td>Android device emulator</td><td>Mobile Testing</td></tr>
+<tr><td>Git</td><td>Version control — QA uses it to track scripts, read diffs, understand what changed</td><td>Version Control</td></tr>
+</table>
+
+<h3>Testing Pyramid</h3>
+<ul>
+<li><strong>Unit tests (bottom — most tests):</strong> Written by developers. Test individual functions in isolation. Fast, cheap, many.</li>
+<li><strong>Integration tests (middle):</strong> Test that components work together. More complex, moderate speed.</li>
+<li><strong>E2E / UI tests (top — fewest):</strong> Test full user flows. Slow, expensive to maintain, most realistic.</li>
+</ul>
+<div class="callout callout-tip">Many teams accidentally invert the pyramid — only E2E tests, no unit tests. This makes regression suites slow, brittle, and flaky. The pyramid exists for a reason.</div>
+</section>
+
+
+<!-- AGILE AND SCRUM -->
+<section id="agile">
+<h2>Agile, Scrum and QA</h2>
+<p>Almost every senior QA interview asks about Agile. You need to know not just the terminology but how QA actually fits into the process day-to-day.</p>
+
+<h3>Agile vs Waterfall</h3>
+<table>
+<tr><th>Aspect</th><th>Waterfall</th><th>Agile</th></tr>
+<tr><td>Structure</td><td>Sequential phases: requirements &#x2192; design &#x2192; dev &#x2192; test &#x2192; release</td><td>Iterative cycles (sprints). All phases happen inside each sprint.</td></tr>
+<tr><td>Testing starts</td><td>After all development is done</td><td>From day one of the sprint</td></tr>
+<tr><td>Flexibility</td><td>Low. Changes are expensive mid-project.</td><td>High. Requirements can evolve sprint-to-sprint.</td></tr>
+<tr><td>Releases</td><td>One big release at the end</td><td>Potentially shippable product every sprint</td></tr>
+<tr><td>Risk</td><td>Big risk at the end — bugs found late</td><td>Risk distributed and caught early</td></tr>
+<tr><td>Best for</td><td>Fixed-scope projects with stable requirements</td><td>Most modern software products</td></tr>
+</table>
+
+<h3>Scrum Ceremonies — QA Role in Each</h3>
+
+<h4>Sprint Planning</h4>
+<p>The team selects user stories from the backlog for the sprint. QA's role:</p>
+<ul>
+<li>Review acceptance criteria of each story — flag ambiguities before development starts</li>
+<li>Estimate testing effort for each story</li>
+<li>Flag dependencies: "This story requires a test account type that doesn't exist yet"</li>
+<li>Identify stories that need performance or security attention</li>
+</ul>
+<div class="callout callout-tip">Sprint planning is where shift-left starts. Questions caught here cost nothing. The same question found as a bug in production costs 100x more.</div>
+
+<h4>Daily Standup (Daily Scrum)</h4>
+<p>15-minute daily sync. Three questions: what did I do yesterday, what am I doing today, any blockers?</p>
+<p>QA-specific standup patterns:</p>
+<ul>
+<li>"Yesterday: tested story X, found 2 bugs (logged). Today: completing retest of story Y after dev fix."</li>
+<li>If blocked: "Blocked — the build for story Z isn't deployed to staging yet." (This is data, not complaint.)</li>
+<li>Senior QAs also mention risk: "I'm concerned we won't finish testing story W before the sprint ends — it's more complex than estimated."</li>
+</ul>
+
+<h4>Sprint Review (Demo)</h4>
+<p>Team demonstrates completed work to stakeholders. QA's role:</p>
+<ul>
+<li>Confirm what is actually "done" meets the definition of done (DoD)</li>
+<li>Sometimes demo the testing approach or show the test coverage for a feature</li>
+<li>Provide a quality summary: "3 stories completed and fully tested. 1 story deferred — 1 P2 bug remaining."</li>
+</ul>
+
+<h4>Sprint Retrospective</h4>
+<p>Team reflects on the process: what went well, what didn't, what to improve. QA contributions:</p>
+<ul>
+<li>Flag patterns: "We had 3 regression bugs this sprint because feature X touched the payment module — we need better integration coverage there."</li>
+<li>Propose process improvements: "If QA gets stories 2 days before sprint end instead of 1 day, we can do deeper testing."</li>
+<li>Acknowledge wins: "The new entry criteria checklist prevented 2 wasted days of testing a broken build."</li>
+</ul>
+
+<h4>Backlog Refinement (Grooming)</h4>
+<p>Team reviews upcoming stories before they enter a sprint. QA's most valuable ceremony.</p>
+<ul>
+<li>Review ACs for completeness and testability</li>
+<li>Ask edge case questions: "What happens if the network drops mid-payment?"</li>
+<li>Identify missing ACs and get them added to the story before development starts</li>
+<li>Flag stories that are too vague to test: "This AC says 'the form should work correctly' — what does correctly mean?"</li>
+</ul>
+
+<h3>Definition of Done (DoD)</h3>
+<p>A shared agreement on what "done" actually means for a story to be considered complete. Without a DoD, "done" means different things to different people.</p>
+<h4>Example DoD for a user story</h4>
+<ul>
+<li>Code reviewed and approved by at least one other developer</li>
+<li>Unit tests written and passing</li>
+<li>Feature deployed to staging environment</li>
+<li>QA has executed all test cases for the story</li>
+<li>No open P1 or P2 bugs</li>
+<li>Acceptance criteria verified and signed off by QA</li>
+<li>Feature works on supported browsers / devices</li>
+<li>Release notes updated if user-facing change</li>
+</ul>
+<div class="callout callout-warn">If a story doesn't meet the DoD, it is NOT done — no matter what the developer says. QA is the guardian of the DoD.</div>
+
+<h3>Acceptance Criteria (AC) vs Definition of Done (DoD)</h3>
+<table>
+<tr><th>Aspect</th><th>Acceptance Criteria</th><th>Definition of Done</th></tr>
+<tr><td>Scope</td><td>Specific to one user story</td><td>Applies to every story on the team</td></tr>
+<tr><td>Written by</td><td>Product Manager / Business Analyst</td><td>Agreed by the whole team</td></tr>
+<tr><td>Focus</td><td>What this feature must do</td><td>What "complete" means for any feature</td></tr>
+<tr><td>Example</td><td>"User receives confirmation email within 30 seconds of registration"</td><td>"Code reviewed, QA tested, no P1/P2 bugs open"</td></tr>
+</table>
+
+<h3>QA in Agile: Common Senior Interview Questions</h3>
+
+<h4>"How do you handle testing when development isn't finished until the last day of the sprint?"</h4>
+<div class="callout callout-info">"This is a process problem, not a testing problem. The fix is definition of done that requires stories to be in staging X days before sprint end. I raise this in retrospectives with data: 'In the last 3 sprints, stories entered staging with less than 1 day left. This caused 2 carry-overs and 1 production bug.' Showing the pattern gets it fixed."</div>
+
+<h4>"How do you keep up with fast sprints — new features every 2 weeks?"</h4>
+<div class="callout callout-info">"Three things: (1) risk-based prioritization — I don't test everything equally. (2) shift-left — I catch issues in refinement before they're written as bugs. (3) regression automation for stable areas — frees manual testing time for new features."</div>
+
+<h4>"What's the difference between a story and a bug in your backlog?"</h4>
+<p>A user story describes new functionality to be built. A bug describes a defect in existing functionality. Both get tracked, estimated, and prioritized — but they go through different workflows. Stories have ACs; bugs have reproduction steps and expected vs actual results.</p>
+</section>
+
+<!-- TEST REPORTING -->
+<section id="reporting">
+<h2>Test Reporting</h2>
+<p>Knowing how to communicate quality status is one of the most overlooked senior QA skills. Writing a clear test summary report and presenting quality data to stakeholders confidently separates senior QAs from mid-level ones.</p>
+
+<h3>Test Summary Report</h3>
+<p>A test summary report communicates what was tested, what was found, what the overall quality status is, and what risks remain. It is the QA sign-off document for a release.</p>
+
+<h4>Structure of a good test summary report</h4>
+<pre><code>TEST SUMMARY REPORT
+Release: v4.2 — Login and Account Features
+Date: June 20, 2026
+Prepared by: [QA Engineer Name]
+
+1. SCOPE
+   Features tested: Login flow, account creation,
+   password reset, session management
+   Features NOT tested: Payment module (out of scope for this release)
+   Environments: Staging v4.2, iOS 17 / iOS 16 / Android 14
+
+2. EXECUTION SUMMARY
+   Total test cases: 145
+   Executed: 143
+   Passed: 138
+   Failed: 5
+   Blocked: 2 (environment issue — resolved day 3)
+   Skipped: 0
+   Pass rate: 95.1%
+
+3. DEFECTS SUMMARY
+   P1 (Critical): 0 open
+   P2 (High): 1 open — [BUG-441] Password reset email
+                        delayed >5 min on Gmail
+                        (workaround: documented for support)
+   P3 (Medium): 3 open — deferred to v4.3, PM approved
+   P4 (Low): 2 open — accepted as known issues
+
+4. RISKS AND NOTES
+   - Payment module not tested this release
+   - BUG-441 is known and has a documented workaround
+   - Regression suite did not cover Android 13 this cycle
+     (resource constraint — tracked as test debt)
+
+5. RECOMMENDATION
+   APPROVED FOR RELEASE with BUG-441 risk accepted by PM
+   (documented in Jira comment, June 19)
+
+6. SIGN-OFF
+   QA: [Name] — June 20, 2026
+   PM: [Name] — June 20, 2026</code></pre>
+
+<h3>Key Metrics to Include in Reports</h3>
+<table>
+<tr><th>Metric</th><th>What it shows</th><th>Why it matters</th></tr>
+<tr><td>Pass rate</td><td>% of executed test cases that passed</td><td>Overall quality signal</td></tr>
+<tr><td>Defect density</td><td>Bugs found per feature or per story point</td><td>Which areas are riskiest</td></tr>
+<tr><td>Defect leakage</td><td>Bugs found in production vs in testing</td><td>Effectiveness of QA process</td></tr>
+<tr><td>Test coverage</td><td>% of requirements or ACs with test cases</td><td>Shows what's been verified</td></tr>
+<tr><td>Blocked time</td><td>Hours lost to environment or build issues</td><td>Process efficiency signal</td></tr>
+<tr><td>P1 open at release</td><td>Count of critical bugs not fixed</td><td>Direct release gate metric</td></tr>
+</table>
+
+<h3>Communicating Quality to Stakeholders</h3>
+<p>Different audiences need different levels of detail. A developer wants bug details. A PM wants risk and go/no-go signal. A CTO wants trends and production stability.</p>
+
+<h4>The one-paragraph quality status update (for Slack or standup)</h4>
+<pre><code>Testing for v4.2 is 90% complete. 138 of 145 test cases passed.
+1 P2 bug open (password reset delay on Gmail) — workaround
+documented. 0 P1 bugs. On track for release June 22.
+PM to decide on BUG-441 before we proceed.</code></pre>
+
+<h4>Communicating bad news (bugs found late, release at risk)</h4>
+<div class="callout callout-info">"Found a P1 bug in the payment flow today — order 30 minutes before release. Here is the bug report [link]. User impact: any user with a zero-balance account gets a silent failure instead of an error message. Estimated fix time from dev: 2 hours. Options: (1) delay release 3 hours, (2) disable zero-balance accounts temporarily via feature flag, (3) release with known issue and hotfix tomorrow. I recommend option 2 — lowest risk, no delay. Your call."</div>
+<div class="callout callout-tip">Always present options, not just problems. "Here is the bug" is junior. "Here is the bug, here are the options, here is my recommendation" is senior.</div>
+
+<h3>Test Coverage vs Test Completion</h3>
+<p>These are different and both matter.</p>
+<table>
+<tr><th>Concept</th><th>Definition</th><th>Example</th></tr>
+<tr><td>Test completion</td><td>What % of your planned test cases have been executed</td><td>"143 of 145 test cases executed = 98.6% complete"</td></tr>
+<tr><td>Test coverage</td><td>What % of requirements or ACs have test cases written for them</td><td>"12 of 15 ACs have test cases = 80% coverage"</td></tr>
+</table>
+<div class="callout callout-warn">100% test completion does not mean 100% coverage. You can execute every test case you wrote and still have untested requirements — if you didn't write test cases for them in the first place.</div>
+
+<h3>Defect Trend Analysis</h3>
+<p>Tracking bug trends over time reveals process health. Senior QAs present trends, not just point-in-time counts.</p>
+<ul>
+<li><strong>Rising bug count per release:</strong> Product complexity growing faster than test coverage, or code quality declining</li>
+<li><strong>High reopen rate:</strong> Dev is not reproducing bugs before marking them fixed, or QA retest criteria are unclear</li>
+<li><strong>Bugs concentrated in one module:</strong> That module needs refactoring or dedicated regression attention</li>
+<li><strong>Production bugs increasing:</strong> Regression suite is missing critical scenarios — review and expand it</li>
+</ul>
+</section>
+
+<!-- ACCESSIBILITY TESTING -->
+<section id="accessibility">
+<h2>Accessibility Testing</h2>
+<p>Accessibility testing (a11y) is increasingly expected from senior QAs. It verifies that the product can be used by people with disabilities — visual, hearing, motor, or cognitive. It is also legally required in many markets (WCAG compliance).</p>
+
+<h3>Why Accessibility Matters</h3>
+<ul>
+<li>Legal requirement in many countries (ADA in US, EN 301 549 in EU, Equality Act in UK)</li>
+<li>~15% of the global population has some form of disability</li>
+<li>Accessibility fixes often improve usability for everyone (captions help in noisy environments, keyboard navigation helps power users)</li>
+<li>Inaccessible products are increasingly rejected in enterprise procurement</li>
+</ul>
+
+<h3>WCAG — the Standard</h3>
+<p>WCAG (Web Content Accessibility Guidelines) is the international standard. Current version: WCAG 2.1. Four principles — the POUR framework:</p>
+<table>
+<tr><th>Principle</th><th>What it means</th><th>Example</th></tr>
+<tr><td>Perceivable</td><td>Users can perceive all content</td><td>Images have alt text. Videos have captions.</td></tr>
+<tr><td>Operable</td><td>UI can be operated by everyone</td><td>All features work with keyboard only. No time limits that can't be extended.</td></tr>
+<tr><td>Understandable</td><td>Content and UI are understandable</td><td>Error messages explain what went wrong. Form labels are clear.</td></tr>
+<tr><td>Robust</td><td>Content works with assistive technologies</td><td>Screen readers can read all interactive elements.</td></tr>
+</table>
+
+<h3>Conformance Levels</h3>
+<table>
+<tr><th>Level</th><th>What it means</th><th>Required for</th></tr>
+<tr><td>A (minimum)</td><td>Basic accessibility — critical barriers removed</td><td>Starting point</td></tr>
+<tr><td>AA (standard)</td><td>Standard compliance — most legal requirements</td><td>Most government and enterprise targets</td></tr>
+<tr><td>AAA (enhanced)</td><td>Highest level — often not fully achievable</td><td>Specialist services for disability communities</td></tr>
+</table>
+<p>Most companies target <strong>WCAG 2.1 AA</strong>.</p>
+
+<h3>What to Test — Practical Checklist</h3>
+
+<h4>Keyboard navigation</h4>
+<ul>
+<li>Tab through the entire page — every interactive element should be reachable</li>
+<li>Tab order should be logical (left-to-right, top-to-bottom)</li>
+<li>Focus indicator must be visible at all times (the highlight around the focused element)</li>
+<li>All actions achievable with keyboard: open menus, submit forms, close modals</li>
+<li>No keyboard trap: pressing Tab should never get stuck inside a component</li>
+</ul>
+
+<h4>Screen reader testing</h4>
+<ul>
+<li>All images have meaningful alt text (or empty alt="" if purely decorative)</li>
+<li>Buttons have descriptive labels: "Submit order" not just "Submit"</li>
+<li>Form fields have associated labels (not just placeholder text)</li>
+<li>Error messages are announced by screen reader when they appear</li>
+<li>Dynamic content changes (modals opening, toast messages) are announced</li>
+</ul>
+<p><strong>Tools:</strong> VoiceOver (Mac/iOS built-in), TalkBack (Android built-in), NVDA (free Windows screen reader), JAWS (enterprise Windows).</p>
+
+<h4>Color and contrast</h4>
+<ul>
+<li>Text contrast ratio minimum: 4.5:1 for normal text, 3:1 for large text (WCAG AA)</li>
+<li>Information is never conveyed by color alone (e.g. "required fields in red" must also have an asterisk or label)</li>
+<li>UI works in high contrast mode (Windows/iOS high contrast settings)</li>
+</ul>
+<p><strong>Tools:</strong> Colour Contrast Analyser, browser DevTools (Accessibility tab shows contrast ratios).</p>
+
+<h4>Text and zoom</h4>
+<ul>
+<li>Page is usable at 200% browser zoom — no content hidden or overlapping</li>
+<li>Text can be resized without breaking layout</li>
+<li>No horizontal scrolling required at standard viewport sizes</li>
+</ul>
+
+<h4>Forms</h4>
+<ul>
+<li>Every input has a visible, programmatically associated label</li>
+<li>Required fields are clearly marked (not just color)</li>
+<li>Error messages identify which field has the error and how to fix it</li>
+<li>Autocomplete attributes set correctly (e.g. autocomplete="email")</li>
+</ul>
+
+<h4>Images and media</h4>
+<ul>
+<li>Informative images: alt text describes the content and purpose</li>
+<li>Decorative images: empty alt attribute (alt="")</li>
+<li>Videos: captions available for all spoken content</li>
+<li>Audio: transcript available</li>
+<li>No content that flashes more than 3 times per second (seizure risk)</li>
+</ul>
+
+<h3>Accessibility Testing Tools</h3>
+<table>
+<tr><th>Tool</th><th>What it checks</th><th>Type</th></tr>
+<tr><td>axe DevTools (browser extension)</td><td>Automated scan of the current page for WCAG violations</td><td>Automated</td></tr>
+<tr><td>WAVE (browser extension)</td><td>Visual overlay showing accessibility issues on the page</td><td>Automated</td></tr>
+<tr><td>Lighthouse (Chrome DevTools)</td><td>Accessibility score + issues as part of overall audit</td><td>Automated</td></tr>
+<tr><td>VoiceOver (Mac/iOS)</td><td>Apple's built-in screen reader</td><td>Manual</td></tr>
+<tr><td>TalkBack (Android)</td><td>Android's built-in screen reader</td><td>Manual</td></tr>
+<tr><td>NVDA</td><td>Free Windows screen reader</td><td>Manual</td></tr>
+<tr><td>Colour Contrast Analyser</td><td>Checks color contrast ratios</td><td>Manual</td></tr>
+</table>
+
+<div class="callout callout-warn"><strong>Automated tools find only ~30-40% of accessibility issues.</strong> The rest require manual testing with keyboard and screen reader. Automated tools are a starting point, not a complete test.</div>
+
+<h3>Common Accessibility Bugs</h3>
+<table>
+<tr><th>Bug</th><th>Impact</th><th>How to find it</th></tr>
+<tr><td>Missing alt text on images</td><td>Screen reader users hear "image" with no context</td><td>axe / WAVE scan, or check HTML</td></tr>
+<tr><td>Buttons with no label (icon-only)</td><td>Screen reader announces "button" with no purpose</td><td>Tab to button, hear what screen reader says</td></tr>
+<tr><td>No visible focus indicator</td><td>Keyboard users can't see where they are on the page</td><td>Tab through page, look for focus ring</td></tr>
+<tr><td>Form error messages not programmatically linked</td><td>Screen reader doesn't announce the error</td><td>Submit invalid form, check screen reader output</td></tr>
+<tr><td>Color-only information</td><td>Color-blind users miss the information</td><td>View page in grayscale, check if info is still clear</td></tr>
+<tr><td>Keyboard trap in modal</td><td>User can't escape a modal without a mouse</td><td>Open modal, try to Tab out without clicking</td></tr>
+</table>
+
+<h3>How to Answer Accessibility Questions in Interviews</h3>
+<div class="callout callout-success"><strong>If asked "how do you approach accessibility testing":</strong> "I treat accessibility as a quality dimension alongside functional and performance testing, not an afterthought. I run automated scans (axe, Lighthouse) as a baseline to catch obvious violations quickly. Then I do manual keyboard-only navigation and at least basic screen reader testing on critical flows — login, checkout, main user journey. I also review designs before development for contrast ratios and label clarity. The goal is WCAG 2.1 AA compliance, and I make sure accessibility is part of the definition of done."</div>
+</section>
+
+
+<!-- PERFORMANCE AND LOAD TESTING -->
+<section id="performance">
+<h2>Performance and Load Testing</h2>
+<p>Performance testing verifies the system behaves correctly under expected and unexpected load. It is one of the most common senior QA interview topics — and the most common follow-up question is: <strong>"Where do those numbers come from?"</strong></p>
+
+<h3>Where Do Performance Numbers Come From?</h3>
+<p>This is the question that separates seniors from juniors. Every performance test needs target numbers — but interviewers want to know how you define them, not just that they exist.</p>
+
+<h4>Source 1: Business-defined SLAs (best case)</h4>
+<p>The product team or business stakeholders define Service Level Agreements. These are formal commitments about performance that the system must meet.</p>
+<pre><code>Examples of business-defined SLAs:
+- "Login must complete in under 2 seconds for 95% of requests"
+- "Order placement must respond in under 500ms at peak load"
+- "The platform must support 10,000 concurrent users without degradation"
+- "API uptime must be 99.9% (less than 8.7 hours downtime per year)"</code></pre>
+<p>When SLAs exist, your job is to test against them and report pass or fail. This is the cleanest scenario.</p>
+
+<h4>Source 2: Production baseline (most common in practice)</h4>
+<p>No formal SLA? Measure what production currently does, then use that as your baseline. The rule: staging must perform at least as well as production, ideally better.</p>
+<pre><code>How to get baseline numbers:
+1. Check APM tools (Datadog, New Relic, Grafana)
+   - Average response time for key endpoints
+   - 95th percentile response time (p95)
+   - Peak concurrent users from the last 30-90 days
+   - Error rate at peak load
+
+2. Example baseline you might find:
+   - Production login p95: 1.2 seconds
+   - Peak concurrent users: 820 (from analytics)
+   - Error rate at peak: 0.3%
+
+3. Your test targets become:
+   - Staging login p95 must be &lt;= 1.2 seconds
+   - Test with 1000 concurrent users (peak + ~20% headroom)
+   - Error rate must stay under 1% under load</code></pre>
+<div class="callout callout-tip">Always add 20-25% headroom on top of peak production numbers. If production peaks at 800 users, test for 1000. You want to know the system can handle growth before growth happens.</div>
+
+<h4>Source 3: Industry UX standards (fallback when no data exists)</h4>
+<p>When there are no business SLAs and no production data (new product, new feature), use research-backed industry benchmarks as your starting point. These are defensible in any interview or stakeholder conversation.</p>
+<table>
+<tr><th>Response time</th><th>User perception</th><th>Source</th></tr>
+<tr><td>Under 100ms</td><td>Feels instant — user thinks the system reacted to them</td><td>Jakob Nielsen's UX research</td></tr>
+<tr><td>100ms - 1 second</td><td>Feels responsive — user notices a small delay but flow isn't interrupted</td><td>Nielsen Norman Group</td></tr>
+<tr><td>1 - 3 seconds</td><td>Attention starts to drift — user notices the wait</td><td>Google / Nielsen</td></tr>
+<tr><td>Over 3 seconds</td><td>53% of mobile users abandon the page</td><td>Google research (2018, still cited)</td></tr>
+<tr><td>Over 10 seconds</td><td>User loses focus, likely to navigate away or assume something is broken</td><td>Nielsen Norman Group</td></tr>
+</table>
+<pre><code>Practical targets derived from industry standards:
+- Page load: &lt; 3 seconds on 4G
+- API response (read): &lt; 500ms
+- API response (write/transaction): &lt; 1 second
+- Search results: &lt; 1 second
+- File upload feedback: immediate acknowledgment &lt; 200ms,
+  progress shown for anything taking over 1 second</code></pre>
+
+<div class="callout callout-success"><strong>Full senior answer when asked "where do these numbers come from?":</strong><br><br>
+"Three sources in priority order. First, business-defined SLAs — if the product team has committed to performance targets, those are the numbers I test against. Second, production baseline — if no SLA exists, I pull current production metrics from monitoring tools and use those as the baseline. Staging must match or beat production, and I add 20-25% headroom on load numbers to account for growth. Third, industry UX standards — if it's a new product with no production data, I use research-backed benchmarks: under 1 second for most interactions, under 3 seconds for page loads. These are defensible starting points that I present to the business for formal sign-off before testing begins."</div>
+
+<h3>Types of Performance Tests</h3>
+<table>
+<tr><th>Type</th><th>What it does</th><th>Question it answers</th><th>Example</th></tr>
+<tr><td>Load testing</td><td>Simulate expected normal + peak traffic</td><td>Does the system handle our normal load?</td><td>800 concurrent users for 30 minutes</td></tr>
+<tr><td>Stress testing</td><td>Push beyond expected limits until failure</td><td>Where does the system break?</td><td>Ramp from 1000 to 5000 users until errors spike</td></tr>
+<tr><td>Spike testing</td><td>Sudden massive increase in load</td><td>Can we survive a flash event?</td><td>Instantly jump to 5x normal load, then back down</td></tr>
+<tr><td>Soak / endurance testing</td><td>Sustained normal load over many hours</td><td>Does anything degrade over time?</td><td>800 users for 8 hours — watch for memory leaks, slow response drift</td></tr>
+<tr><td>Scalability testing</td><td>Gradually increase load, measure throughput</td><td>Does adding resources actually help?</td><td>Does doubling servers halve response time?</td></tr>
+<tr><td>Volume testing</td><td>Large amounts of data in the database</td><td>Does performance degrade as data grows?</td><td>Test with 10M records vs 100K records</td></tr>
+</table>
+
+<h3>Key Performance Metrics</h3>
+<table>
+<tr><th>Metric</th><th>What it measures</th><th>Typical target</th></tr>
+<tr><td>Response time</td><td>Time from request sent to full response received</td><td>Defined by SLA or &lt;500ms for API</td></tr>
+<tr><td>Throughput (RPS)</td><td>Requests per second the system can handle</td><td>Depends on system — baseline from production</td></tr>
+<tr><td>Error rate</td><td>% of requests resulting in errors under load</td><td>&lt;1% under expected load, 0% under normal</td></tr>
+<tr><td>p95 / p99</td><td>95th / 99th percentile response time</td><td>More meaningful than average — catches slow outliers</td></tr>
+<tr><td>Concurrent users</td><td>How many users active at the same time</td><td>Peak production + 20-25% headroom</td></tr>
+<tr><td>CPU / Memory under load</td><td>Server resource usage at peak</td><td>CPU &lt;80%, memory stable (no leaks)</td></tr>
+<tr><td>Time to First Byte (TTFB)</td><td>Time until first byte of response arrives</td><td>&lt;200ms for good perceived performance</td></tr>
+</table>
+<div class="callout callout-warn"><strong>Never use average response time as your primary metric.</strong> Averages hide outliers. If 95% of requests take 200ms but 5% take 10 seconds, the average looks fine — but 1 in 20 users has a terrible experience. Always report p95 and p99.</div>
+
+<h3>Performance Testing Tools</h3>
+<table>
+<tr><th>Tool</th><th>What it does</th><th>Best for</th></tr>
+<tr><td>k6</td><td>Modern load testing in JavaScript. Runs from CLI or CI.</td><td>API and backend load testing, CI integration</td></tr>
+<tr><td>Apache JMeter</td><td>GUI-based, feature-rich load testing tool</td><td>Complex scenarios, teams already using it</td></tr>
+<tr><td>Gatling</td><td>High-performance load testing, Scala/Java DSL</td><td>High-volume scenarios, developer-friendly</td></tr>
+<tr><td>Locust</td><td>Python-based load testing, easy to write scenarios</td><td>Teams comfortable with Python</td></tr>
+<tr><td>Artillery</td><td>YAML or JS load testing, easy to set up</td><td>Quick load tests for APIs</td></tr>
+<tr><td>Postman Collection Runner</td><td>Basic load simulation with iterations</td><td>Quick concurrency checks without a dedicated tool</td></tr>
+<tr><td>Browser DevTools (Performance tab)</td><td>Records and profiles frontend rendering performance</td><td>Frontend performance bottlenecks</td></tr>
+<tr><td>Lighthouse</td><td>Automated audit of page load, rendering, and web vitals</td><td>Frontend performance + Core Web Vitals</td></tr>
+<tr><td>Datadog / New Relic / Grafana</td><td>APM — monitors live production performance metrics</td><td>Getting baseline numbers, production monitoring</td></tr>
+</table>
+
+<h3>Real Performance Test Example (k6)</h3>
+<pre><code>// k6 load test — login endpoint
+import http from 'k6/http';
+import { check, sleep } from 'k6';
+
+export let options = {
+  stages: [
+    { duration: '2m', target: 100 },   // ramp up to 100 users
+    { duration: '5m', target: 100 },   // hold at 100 users
+    { duration: '2m', target: 500 },   // ramp to 500 (stress)
+    { duration: '2m', target: 0 },     // ramp down
+  ],
+  thresholds: {
+    http_req_duration: ['p95&lt;2000'],   // 95% of requests under 2 seconds
+    http_req_failed: ['rate&lt;0.01'],    // error rate under 1%
+  },
+};
+
+export default function () {
+  const res = http.post('https://staging.example.com/api/login', {
+    email: 'testuser@example.com',
+    password: 'TestPass123',
+  });
+  check(res, {
+    'status is 200': (r) => r.status === 200,
+    'response time OK': (r) => r.timings.duration &lt; 2000,
+  });
+  sleep(1);
+}</code></pre>
+<p>This test ramps to 100 users, holds, then spikes to 500. It will fail if p95 exceeds 2 seconds or error rate exceeds 1%. These thresholds come from the agreed SLA.</p>
+
+<h3>How to Present Performance Results</h3>
+<pre><code>Performance Test Results — Login Endpoint — June 20, 2026
+
+Test type: Load test (ramp to 500 concurrent users)
+Duration: 11 minutes total
+Tool: k6
+
+Results:
+  Total requests:     42,350
+  Passed:             42,180 (99.6%)
+  Failed:             170 (0.4%) — all during 500-user spike
+  Average response:   380ms
+  p95 response:       1,840ms
+  p99 response:       3,200ms
+  Peak throughput:    78 requests/second
+  Max CPU (staging):  74%
+  Memory:             Stable (no growth observed)
+
+SLA check:
+  p95 &lt; 2000ms:   PASS (1,840ms)
+  Error rate &lt; 1%: PASS (0.4%)
+  CPU &lt; 80%:       PASS (74%)
+
+Notes:
+  p99 at 3.2 seconds during the 500-user spike is worth
+  monitoring. Not an SLA breach but warrants investigation
+  before scaling beyond current capacity.
+
+Recommendation: PASS for release. Flag p99 for next sprint.</code></pre>
+
+<h3>Performance Testing in QA's Role vs Dev's Role</h3>
+<p>In many companies, performance testing sits in a grey zone. Senior QAs should be clear about this:</p>
+<ul>
+<li><strong>QA owns:</strong> defining performance test scenarios, setting thresholds based on SLAs, running tests, interpreting results, reporting pass/fail, recommending action</li>
+<li><strong>Dev owns:</strong> investigating and fixing performance bottlenecks identified by QA</li>
+<li><strong>DevOps/Infra owns:</strong> infrastructure scaling decisions based on test findings</li>
+<li><strong>Product/Business owns:</strong> defining the SLAs that QA tests against</li>
+</ul>
+<div class="callout callout-success"><strong>Senior answer when asked about your role in performance testing:</strong> "I own the test design, execution, and reporting. I define scenarios based on production traffic patterns and business SLAs, run the tests, and present findings with clear pass/fail against thresholds. I don't fix the bottlenecks — that's engineering. But I make sure the data is clear enough that the right people can act on it quickly."</div>
+</section>
+
+</main>
+
+<footer>
+<p>QA For Job &middot; Free resource for QA engineers preparing for their next role &middot; 2026</p>
+<p>Share it. Use it. Pass it forward.</p>
+</footer>
+
+<script>
+// Nav smooth scroll
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+    // Clear search when nav clicked
+    document.getElementById('siteSearch').value = '';
+    document.getElementById('searchResultsArea').innerHTML = '';
+    document.getElementById('searchResultsArea').classList.remove('visible');
+  });
+});
+
+// Active nav on scroll
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 160) current = s.getAttribute('id'); });
+  navLinks.forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+  });
+});
+
+// Search
+(function() {
+  const INDEX = [];
+  document.querySelectorAll('section').forEach(sec => {
+    const sectionId = sec.getAttribute('id');
+    const sectionTitle = sec.querySelector('h2') ? sec.querySelector('h2').textContent : sectionId;
+    // Index h3/h4 headings with surrounding text
+    sec.querySelectorAll('h3, h4').forEach(h => {
+      const heading = h.textContent.trim();
+      let snippet = '';
+      let el = h.nextElementSibling;
+      while (el && !['H3','H4','H2'].includes(el.tagName)) {
+        const t = el.textContent.trim();
+        if (t.length > 20) { snippet = t.substring(0, 140) + '...'; break; }
+        el = el.nextElementSibling;
+      }
+      INDEX.push({ sectionId, sectionTitle, heading, snippet, el: h });
+    });
+    // Also index p tags at top of section
+    const firstP = sec.querySelector('p');
+    if (firstP) {
+      INDEX.push({ sectionId, sectionTitle, heading: sectionTitle, snippet: firstP.textContent.substring(0, 140) + '...', el: sec.querySelector('h2') });
+    }
+  });
+
+  function highlight(text, q) {
+    const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return text.replace(re, '<mark>$1</mark>');
+  }
+
+  const input = document.getElementById('siteSearch');
+  const area = document.getElementById('searchResultsArea');
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    if (q.length < 2) {
+      area.innerHTML = '';
+      area.classList.remove('visible');
+      return;
+    }
+    const hits = INDEX.filter(item =>
+      item.heading.toLowerCase().includes(q) ||
+      item.snippet.toLowerCase().includes(q) ||
+      item.sectionTitle.toLowerCase().includes(q)
+    ).slice(0, 8);
+
+    if (hits.length === 0) {
+      area.innerHTML = '<div class="search-empty">No results for <strong>"' + input.value + '"</strong>. Try different keywords.</div>';
+      area.classList.add('visible');
+      return;
+    }
+
+    area.innerHTML = hits.map(h =>
+      `<div class="search-hit" data-id="${h.sectionId}" data-el="${h.heading}">
+        <div class="hit-section">${h.sectionTitle}</div>
+        <div class="hit-title">${highlight(h.heading, input.value.trim())}</div>
+        ${h.snippet ? `<div class="hit-snippet">${highlight(h.snippet.substring(0,130), input.value.trim())}...</div>` : ''}
+      </div>`
+    ).join('');
+    area.classList.add('visible');
+
+    area.querySelectorAll('.search-hit').forEach(hit => {
+      hit.addEventListener('click', () => {
+        const id = hit.getAttribute('data-id');
+        const headingText = hit.getAttribute('data-el');
+        // Find the heading in that section
+        const sec = document.getElementById(id);
+        let target = sec;
+        if (sec) {
+          const headings = sec.querySelectorAll('h2,h3,h4');
+          headings.forEach(h => { if (h.textContent.trim() === headingText) target = h; });
+        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        input.value = '';
+        area.innerHTML = '';
+        area.classList.remove('visible');
+      });
+    });
+  });
+
+  // Close search on outside click
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrapper') && !e.target.closest('.search-results')) {
+      area.innerHTML = '';
+      area.classList.remove('visible');
+    }
+  });
+})();
+</script>
+
+<!-- AI Chat Widget -->
+<button class="chat-bubble" id="chatToggle" title="Ask QA Assistant">
+  &#x1F916;
+  <span class="chat-badge">AI</span>
+</button>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="chat-avatar">&#x1F916;</div>
+    <div class="chat-info">
+      <strong>QA Assistant</strong>
+      <span>&#x25CF; Online &mdash; Ask me anything QA</span>
+    </div>
+    <button class="chat-close" id="chatClose" title="Close">&#x2715;</button>
+  </div>
+
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg">
+      <div class="msg-avatar">&#x1F916;</div>
+      <div class="msg-bubble">
+        Hey! I'm your QA interview prep assistant. Ask me anything on this site &mdash; test design, SQL, API testing, Agile, defects, performance, accessibility. What's unclear?
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-limit">Questions used: <span id="qCount">0</span> / 5</div>
+
+  <div class="chat-input-row" id="chatInputRow">
+    <textarea id="chatInput" placeholder="Ask a QA question..." rows="1"></textarea>
+    <button class="chat-send" id="chatSend" title="Send">&#x27A4;</button>
+  </div>
+</div>
+
+
+<script>
+(function() {
+  // API calls go through Netlify function - no key needed here
+  const MAX_Q = 5;
+  const STORAGE_KEY = 'qafojob_qcount';
+
+  // Session-based counter (resets on tab close)
+  let qCount = parseInt(sessionStorage.getItem(STORAGE_KEY) || '0');
+
+  const toggle = document.getElementById('chatToggle');
+  const panel  = document.getElementById('chatPanel');
+  const closeBtn = document.getElementById('chatClose');
+  const messages = document.getElementById('chatMessages');
+  const input  = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSend');
+  const qCountEl = document.getElementById('qCount');
+  const inputRow = document.getElementById('chatInputRow');
+
+  function updateCounter() {
+    qCountEl.textContent = qCount;
+    if (qCount >= MAX_Q) showExhausted();
+  }
+  updateCounter();
+
+  function showExhausted() {
+    var d = document.createElement("div");
+    d.className = "chat-exhausted";
+    d.textContent = "You have used all 5 free questions. Refresh the page to continue.";
+    inputRow.innerHTML = "";
+    inputRow.appendChild(d);
+  }
+
+  toggle.addEventListener('click', () => panel.classList.toggle('open'));
+  closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+  // Auto-resize textarea
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+  });
+
+  // Send on Enter (Shift+Enter = new line)
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+  });
+  sendBtn.addEventListener('click', sendMsg);
+
+  function addMsg(text, isUser) {
+    const div = document.createElement('div');
+    div.className = 'chat-msg' + (isUser ? ' user' : '');
+    div.innerHTML = `
+      <div class="msg-avatar">${isUser ? '&#x1F464;' : '&#x1F916;'}</div>
+      <div class="msg-bubble">${escHtml(text)}</div>`;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+    return div;
+  }
+
+  function addTyping() {
+    const div = document.createElement('div');
+    div.className = 'chat-msg';
+    div.id = 'typingIndicator';
+    div.innerHTML = '<div class="msg-avatar">&#x1F916;</div><div class="msg-bubble typing">Thinking...</div>';
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function removeTyping() {
+    const el = document.getElementById('typingIndicator');
+    if (el) el.remove();
+  }
+
+  function escHtml(t) {
+    return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+            .replace(/\n/g,'<br>');
+  }
+
+  // System prompt is now in the Netlify function
+
+  const history = [];
+
+  async function sendMsg() {
+    const text = input.value.trim();
+    if (!text || qCount >= MAX_Q) return;
+
+    addMsg(text, true);
+    input.value = '';
+    input.style.height = 'auto';
+    sendBtn.disabled = true;
+    addTyping();
+
+    history.push({ role: 'user', content: text });
+
+    try {
+      const res = await fetch('/.netlify/functions/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history })
+      });
+
+      const data = await res.json();
+      removeTyping();
+
+      if (data.content && data.content[0]) {
+        const reply = data.content[0].text;
+        history.push({ role: 'assistant', content: reply });
+        addMsg(reply, false);
+        qCount++;
+        sessionStorage.setItem(STORAGE_KEY, qCount);
+        updateCounter();
+      } else {
+        addMsg('Something went wrong. Please try again.', false);
+      }
+    } catch (err) {
+      removeTyping();
+      addMsg('Connection error. Check your internet and try again.', false);
+    }
+
+    sendBtn.disabled = false;
+    input.focus();
+  }
+})();
+</script>
+
+</body>
+</html>
