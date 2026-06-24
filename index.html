@@ -242,6 +242,7 @@ footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-
     <a href="#reporting" class="nav-link">Test Reporting</a>
     <a href="#accessibility" class="nav-link">Accessibility</a>
     <a href="#performance" class="nav-link">Performance</a>
+    <a href="#web-fundamentals" class="nav-link">Web Fundamentals</a>
   </div>
 </nav>
 <main>
@@ -276,6 +277,7 @@ footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-
   <div class="hero-card"><div class="icon">&#x1F4CA;</div><h3>Test Reporting</h3><p>Reports, metrics, stakeholders</p></div>
   <div class="hero-card"><div class="icon">&#x267F;</div><h3>Accessibility</h3><p>WCAG, tools, keyboard, screen reader</p></div>
   <div class="hero-card"><div class="icon">&#x26A1;</div><h3>Performance</h3><p>Load testing, SLAs, numbers, tools</p></div>
+  <div class="hero-card"><div class="icon">&#x1F310;</div><h3>Web Fundamentals</h3><p>Client-server, HTTP vs HTTPS, DNS</p></div>
 </div>
 <div class="callout callout-tip"><strong>How to use this site:</strong> Read sections matching what you are being interviewed for. Practice SQL queries on paper. Memorize the bug report template. Don't try to absorb everything in one sitting.</div>
 </section>
@@ -1790,6 +1792,200 @@ Recommendation: PASS for release. Flag p99 for next sprint.</code></pre>
 <li><strong>Product/Business owns:</strong> defining the SLAs that QA tests against</li>
 </ul>
 <div class="callout callout-success"><strong>Senior answer when asked about your role in performance testing:</strong> "I own the test design, execution, and reporting. I define scenarios based on production traffic patterns and business SLAs, run the tests, and present findings with clear pass/fail against thresholds. I don't fix the bottlenecks — that's engineering. But I make sure the data is clear enough that the right people can act on it quickly."</div>
+</section>
+
+
+<!-- WEB FUNDAMENTALS -->
+<section id="web-fundamentals">
+<h2>Web Fundamentals for QA</h2>
+<p>Senior QA engineers working on web or API products are expected to understand how the web works under the hood. These three topics come up regularly in interviews and in daily testing work.</p>
+
+<div class="toc"><h4>Contents</h4><ul>
+<li>Client-server architecture</li>
+<li>HTTP vs HTTPS - differences and real examples</li>
+<li>DNS - what it is and why QA needs to know it</li>
+</ul></div>
+
+<h3>Client-Server Architecture</h3>
+<p>Almost every modern application is built on the client-server model. Understanding it helps QA think about where bugs live, what to test at each layer, and how to diagnose failures.</p>
+
+<h4>The model</h4>
+<p>A <strong>client</strong> is anything that requests data or a service. A <strong>server</strong> is anything that provides it. The client initiates the conversation. The server responds.</p>
+
+<table>
+<tr><th>Client examples</th><th>Server examples</th></tr>
+<tr><td>Web browser (Chrome, Safari)</td><td>Web server (Nginx, Apache)</td></tr>
+<tr><td>Mobile app (iOS, Android)</td><td>API server (Node.js, Django, Spring)</td></tr>
+<tr><td>Postman</td><td>Database server (PostgreSQL, MySQL)</td></tr>
+<tr><td>Another API (service-to-service)</td><td>File storage server (S3, GCS)</td></tr>
+</table>
+
+<h4>How a typical web request works</h4>
+<ol>
+<li>User types <code>qaforjob.netlify.app</code> in the browser</li>
+<li>Browser asks DNS: "What is the IP address for this domain?" (more on DNS below)</li>
+<li>DNS responds with the IP address</li>
+<li>Browser sends an HTTP request to that IP address</li>
+<li>Server receives the request, processes it, sends back a response</li>
+<li>Browser renders the HTML/CSS/JS and displays the page</li>
+</ol>
+
+<h4>Multi-tier architecture (what most real apps look like)</h4>
+<p>Most production apps have multiple layers between the client and the database:</p>
+<pre><code>Client (browser / mobile app)
+    |
+    | HTTP/HTTPS request
+    v
+Load Balancer (distributes traffic across servers)
+    |
+    v
+Web Server / API Server (business logic)
+    |
+    v
+Cache Layer (Redis, Memcached) -- serves frequent requests fast
+    |
+    v
+Database Server (PostgreSQL, MySQL, MongoDB)
+    |
+    v
+External Services (payment gateway, email service, analytics)</code></pre>
+
+<h4>Why this matters for QA</h4>
+<ul>
+<li><strong>Where is the bug?</strong> A failure could be in the client (UI bug), the API (logic bug), the database (data bug), or an external service (third-party bug). Understanding the layers helps you narrow it down fast.</li>
+<li><strong>What to test at each layer:</strong> Client = UI, UX, rendering. API = logic, validation, auth. Database = data integrity, constraints. External = integration, error handling when service is down.</li>
+<li><strong>Simulating failures:</strong> What happens when the database is slow? When the payment gateway is down? When the cache is stale? Senior QAs test these scenarios.</li>
+</ul>
+
+<div class="callout callout-success"><strong>Senior interview answer</strong> when asked "where would you look if a feature is broken?": "I start by checking the client-side network tab to see what request was made and what response came back. If the request looks correct but the response is wrong, the bug is on the server. If the request itself is malformed, the bug is in the client code. If the response is correct but the UI shows something wrong, it is a rendering bug. The network tab is always my first stop."</div>
+
+<h4>Stateless vs stateful</h4>
+<p>REST APIs are <strong>stateless</strong> -- each request contains all the information the server needs. The server does not remember previous requests. Session information is sent with every request (via token or cookie). This is why JWT tokens exist -- they carry user identity with every request so the server does not need to store session state.</p>
+
+<h3>HTTP vs HTTPS</h3>
+<p>HTTP (HyperText Transfer Protocol) is the protocol browsers and servers use to communicate. HTTPS is HTTP with encryption layered on top via TLS (Transport Layer Security).</p>
+
+<h4>The core difference</h4>
+<table>
+<tr><th>Aspect</th><th>HTTP</th><th>HTTPS</th></tr>
+<tr><td>Encryption</td><td>None -- data travels in plain text</td><td>Encrypted with TLS</td></tr>
+<tr><td>Port</td><td>80</td><td>443</td></tr>
+<tr><td>URL prefix</td><td>http://</td><td>https://</td></tr>
+<tr><td>Certificate required</td><td>No</td><td>Yes (SSL/TLS certificate)</td></tr>
+<tr><td>Data visible to</td><td>Anyone on the network path</td><td>Only sender and receiver</td></tr>
+<tr><td>Browser indicator</td><td>Warning or "Not Secure"</td><td>Padlock icon</td></tr>
+<tr><td>SEO impact</td><td>Penalized by Google</td><td>Preferred by Google</td></tr>
+</table>
+
+<h4>Real examples of why HTTP is dangerous</h4>
+
+<h5>Example 1 -- Login on public WiFi</h5>
+<p>User connects to coffee shop WiFi and logs into a site over HTTP. Anyone on the same WiFi network running a packet sniffer (like Wireshark) can see the username and password in plain text. With HTTPS, they see encrypted garbage that is useless without the decryption key.</p>
+
+<h5>Example 2 -- Man-in-the-middle attack</h5>
+<p>A malicious router intercepts HTTP traffic between the user and the bank. It modifies the page on the fly -- changing the account number in a transfer form. The user sees the original page, but the data goes to the attacker. HTTPS prevents this because any modification breaks the cryptographic signature and the browser rejects it.</p>
+
+<h5>Example 3 -- ISP snooping</h5>
+<p>An Internet Service Provider can see every HTTP request a user makes -- which pages they visit, what they search for, what data they submit. With HTTPS, the ISP can only see that the user connected to a domain -- not what they did there.</p>
+
+<h5>Example 4 -- Session hijacking</h5>
+<p>Over HTTP, session cookies are transmitted in plain text. An attacker on the same network can steal the cookie and impersonate the logged-in user -- even if the login page itself was secure. HTTPS encrypts the cookie in transit, preventing this.</p>
+
+<h4>TLS Handshake (simplified)</h4>
+<p>When you connect to an HTTPS site, a handshake happens before any data is sent:</p>
+<ol>
+<li>Browser says: "Hello, here are the encryption methods I support"</li>
+<li>Server responds: "Hello, here is my SSL certificate and my chosen encryption method"</li>
+<li>Browser verifies the certificate is valid and trusted</li>
+<li>Both sides agree on an encryption key</li>
+<li>All further communication is encrypted with that key</li>
+</ol>
+<p>This whole process takes milliseconds and happens automatically.</p>
+
+<h4>SSL certificate</h4>
+<p>An SSL/TLS certificate proves the server is who it claims to be. It is issued by a trusted Certificate Authority (CA) like Let's Encrypt, DigiCert, or Comodo. When you see the padlock in the browser, it means: (1) the connection is encrypted, and (2) the certificate has been verified.</p>
+
+<div class="callout callout-warn"><strong>Common QA test:</strong> What happens when the SSL certificate expires? The browser shows a scary warning: "Your connection is not private." Users cannot proceed without clicking through a warning. This is a P1 production issue -- test certificate expiry handling in your environments and set up alerts before it happens.</div>
+
+<h4>What QA should test for HTTPS</h4>
+<ul>
+<li>All pages load over HTTPS -- no mixed content warnings (HTTP resources on an HTTPS page)</li>
+<li>HTTP URLs automatically redirect to HTTPS (301 redirect)</li>
+<li>SSL certificate is valid, not expired, and matches the domain</li>
+<li>Sensitive data (passwords, tokens, card numbers) never appear in HTTP requests</li>
+<li>HSTS header is set (tells browsers to always use HTTPS for this domain)</li>
+<li>API endpoints all use HTTPS -- no HTTP fallback</li>
+</ul>
+
+<h3>DNS (Domain Name System)</h3>
+<p>DNS is the internet's phone book. It translates human-readable domain names (like <code>qaforjob.netlify.app</code>) into IP addresses (like <code>104.21.45.22</code>) that computers use to find each other.</p>
+
+<h4>Why computers need this</h4>
+<p>Computers communicate using IP addresses -- numbers, not names. But humans remember names, not numbers. DNS sits in the middle, translating one to the other automatically every time you visit a website.</p>
+
+<h4>How DNS resolution works</h4>
+<pre><code>You type: qaforjob.netlify.app
+
+1. Browser checks its local cache
+   "Have I looked this up recently?" If yes, use cached IP. Done.
+
+2. OS checks its local cache + hosts file
+   Still not found? Ask a DNS resolver.
+
+3. DNS Resolver (usually your ISP or 8.8.8.8)
+   Asks the Root DNS server: "Who handles .app domains?"
+
+4. Root DNS server
+   "Ask the .app TLD nameserver"
+
+5. TLD nameserver (.app)
+   "Ask Netlify's nameserver for netlify.app"
+
+6. Netlify's authoritative nameserver
+   "qaforjob.netlify.app = 104.21.45.22"
+
+7. DNS resolver caches the answer and returns it to your browser
+
+8. Browser connects to 104.21.45.22 over HTTPS</code></pre>
+
+<h4>Key DNS record types</h4>
+<table>
+<tr><th>Record</th><th>What it does</th><th>Example</th></tr>
+<tr><td>A record</td><td>Maps domain to IPv4 address</td><td>qaforjob.com -> 104.21.45.22</td></tr>
+<tr><td>AAAA record</td><td>Maps domain to IPv6 address</td><td>qaforjob.com -> 2606:4700::...</td></tr>
+<tr><td>CNAME record</td><td>Maps domain to another domain (alias)</td><td>www.qaforjob.com -> qaforjob.netlify.app</td></tr>
+<tr><td>MX record</td><td>Mail server for the domain</td><td>qaforjob.com mail -> mail.google.com</td></tr>
+<tr><td>TXT record</td><td>Text data -- used for verification, SPF, DKIM</td><td>Domain ownership verification</td></tr>
+<tr><td>NS record</td><td>Nameservers responsible for the domain</td><td>Points to Netlify DNS servers</td></tr>
+</table>
+
+<h4>TTL (Time To Live)</h4>
+<p>Every DNS record has a TTL -- how long (in seconds) other DNS servers can cache the answer before asking again. Short TTL (300 seconds) = changes propagate fast but more DNS queries. Long TTL (86400 = 24 hours) = cached longer, fewer queries, but changes take longer to propagate globally.</p>
+
+<div class="callout callout-warn"><strong>Real QA scenario:</strong> You deploy a new server and update the DNS A record. But some users still see the old site for hours. Why? Their DNS resolver cached the old IP address and the TTL has not expired yet. This is called DNS propagation delay. Always lower TTL to 300 seconds BEFORE making DNS changes, then restore it after. Senior QAs know to warn the team about this during release planning.</div>
+
+<h4>Why DNS matters for QA</h4>
+<ul>
+<li><strong>Environment routing:</strong> Staging and production often use DNS to route traffic. A misconfigured DNS record can send production traffic to staging or vice versa -- a serious bug.</li>
+<li><strong>SSL certificate validation:</strong> Certificates are issued per domain. If DNS is wrong, the certificate will not match and HTTPS will fail.</li>
+<li><strong>Testing after domain changes:</strong> After a DNS change, flush your local DNS cache (<code>sudo dscacheutil -flushcache</code> on Mac) to test the new routing without waiting for TTL expiry.</li>
+<li><strong>CDN and load balancing:</strong> Many companies use DNS-based load balancing -- different users get different IP addresses. This can cause hard-to-reproduce bugs if the servers are not in sync.</li>
+<li><strong>Subdomain testing:</strong> <code>staging.example.com</code>, <code>api.example.com</code>, <code>cdn.example.com</code> all rely on correct DNS records. Always verify these point to the right places after any infrastructure change.</li>
+</ul>
+
+<h4>Useful DNS commands for QA</h4>
+<pre><code># Look up IP address for a domain (Mac/Linux)
+nslookup qaforjob.netlify.app
+dig qaforjob.netlify.app
+
+# Check which nameservers handle a domain
+dig NS qaforjob.netlify.app
+
+# Flush local DNS cache on Mac
+sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
+
+# Check DNS propagation globally (use web tool)
+# https://dnschecker.org -- shows DNS results from 20+ countries</code></pre>
 </section>
 
 </main>
